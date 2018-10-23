@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 
 <html>
+<?php
+session_start();
+$_SESSION["situation"] = $_POST["situation"];
+?>
 	<head>
 		<title>情境選擇</title>
 		<meta charset="utf-8" />
@@ -10,36 +14,24 @@
 	</head>
 	<body class="right-sidebar is-preload">
 		<div id="page-wrapper">
-			<!-- Header -->
 			<div id="header">
-
-				<!-- Inner -->
 					<div class="inner">
 						<header>
-						<h1>情境</h1>
+						<h1>情境2</h1>
 						</header>
 					</div>
-				<!-- Nav -->
 					<nav id="nav">
 						<ul>
 							<li><a href="index.php">取消點餐</a></li>
 						</ul>
 					</nav>
 			</div>
-				<!-- Main -->
 					<div class="wrapper style1">
 						<div class="container">
 							<div class="row gtr-200">
 								<div class="col-8 col-12-mobile" id="content">
 									<article id="main">
 										<form action="order-main.php" method="post">
-										<p>情境選擇</p>
-										<input type="radio" name="situation" value="family">家人
-										<input type="radio" name="situation" value="friend">朋友
-										<input type="radio" name="situation" value="boyandgirl">情侶
-										<input type="radio" name="situation" value="one">個人
-										<input type="radio" name="situation" value="other">其他
-										<br>
 										<p>性別選擇</p>
 										<input type="radio" name="gender" value="boy">男
 										<input type="radio" name="gender" value="girl">女
@@ -55,10 +47,7 @@
 								</div>
 							</div>
 						</div>
-						
 					</div>
 		</div>
-
 </body>
 </html>
-

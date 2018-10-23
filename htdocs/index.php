@@ -11,9 +11,9 @@
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
 
-			<!-- Header -->	
+			<!-- Header -->
 				<div id="header">
-					
+
 					<!-- Inner -->
 						<div class="inner">
 							<header>
@@ -22,7 +22,7 @@
 								<p>包 含 智 慧 推 薦 的 點 餐 系 統</p>
 							</header>
 							<footer>
-              	  				<a href="situation.php" class="button  ">Start</a>
+              	  				<a href="situation1.php" class="button">Start</a>
 							</footer>
 						</div>
 					<!-- Nav -->
@@ -30,7 +30,7 @@
 							<ul>
 								<li><a href="index.php">開始點餐</a></li>
 								<li><a href="edit.php">菜單管理</a></li>
-								<li><a href="edit.php">weka</a></li>
+								<li><a href="output1.php">weka</a></li>
 							</ul>
 						</nav>
 			</div>
@@ -46,4 +46,3 @@
 			<script src="assets/js/main.js"></script>
 	</body>
 </html>
-

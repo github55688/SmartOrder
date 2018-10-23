@@ -1,28 +1,28 @@
 <!doctype html>
-<link href="../css/singlePageTemplate.css" rel="stylesheet" type="text/css" /> 
+<link href="../css/singlePageTemplate.css" rel="stylesheet" type="text/css" />
 <?php
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname="good";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "good";
 $conn = new mysqli($servername, $username, $password, $dbname);
 ?>
 
-<?php 
+<?php
 session_start();
-$situation=$_SESSION["temp"][0];
-$gender=$_SESSION["temp"][1];
-$age=$_SESSION["temp"][2];
-$soup=$_SESSION["soup"];
-$mainmeal=$_SESSION["mainmeal"];
-$sidemeal=$_POST["sidemeal"];
+$situation = $_SESSION["situation"];
+$gender = $_SESSION["temp"][0];
+$age = $_SESSION["temp"][1];
+$soup = $_SESSION["soup"];
+$mainmeal = $_SESSION["mainmeal"];
+$sidemeal = $_POST["sidemeal"];
 //$addmeal=$_POST["addmeal"];
-$sql = "INSERT INTO home1 (situation, gender, age, soup, mainmeal, sidemeal) 
-VALUES ('$situation','$gender','$age','$soup','$mainmeal','$sidemeal')"; 
-if ($conn->query($sql) === TRUE) {
-echo "成功"; 
+$sql = "INSERT INTO home1 (situation, gender, age, soup, mainmeal, sidemeal)
+VALUES ('$situation','$gender','$age','$soup','$mainmeal','$sidemeal')";
+if ($conn->query($sql) === true) {
+    echo "成功";
 } else {
-echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 ?>
 
@@ -44,10 +44,10 @@ echo "Error: " . $sql . "<br>" . $conn->error;
     </tr>
     <tr>
     <th scope="row"></th>
-    <td><?php echo $_SESSION["soup"]?></td>
-    <td><?php echo $_SESSION["mainmeal"]?></td>
-	  <td><?php echo $_POST["sidemeal"]?></td>
-	  <td><?php echo $_POST["addmeal"]?></td>
+    <td><?php echo $_SESSION["soup"] ?></td>
+    <td><?php echo $_SESSION["mainmeal"] ?></td>
+	  <td><?php echo $_POST["sidemeal"] ?></td>
+	  <td><?php echo $_POST["addmeal"] ?></td>
     </tr>
     <tr>
     <th scope="row">&nbsp;</th>
@@ -63,7 +63,7 @@ echo "Error: " . $sql . "<br>" . $conn->error;
 <div class="button">繼續點餐</div><br>
 <div class="button">完成點餐</div><br><br><br>
 <div class="button">取消點餐</div>
-	
+
 </body>
 </html>
 <?php session_destroy();?>
