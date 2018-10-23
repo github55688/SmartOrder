@@ -111,7 +111,6 @@ input, select, textarea {
 
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 400;
-		color: #483949;
 		line-height: 1.25em;
 	}
 
@@ -2068,7 +2067,7 @@ input[type="radio"] {
 	color: rgb(255, 255, 255);
   }
   input[type="radio"]:checked + label::after {
-	color: #3d3f43;
+	color: #000000;
 	font-family: FontAwesome;
 	border: 2px solid #df7366;
 	content: "\f00c";

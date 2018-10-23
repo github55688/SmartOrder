@@ -4,12 +4,7 @@
 <head><meta charset="utf-8"><title>無標題文件</title></head>
 <body>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "good";
-$conn = new mysqli($servername, $username, $password, $dbname);
-mysqli_query($conn, "SET CHARACTER SET utf8");
+include_once "connect.php";
 ?>
 
 新增:

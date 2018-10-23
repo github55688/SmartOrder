@@ -1,14 +1,7 @@
 <!doctype html>
 <link href="../css/singlePageTemplate.css" rel="stylesheet" type="text/css" />
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "good";
-$conn = new mysqli($servername, $username, $password, $dbname);
-?>
-
-<?php
+include_once("connect.php");
 session_start();
 $situation = $_SESSION["situation"];
 $gender = $_SESSION["temp"][0];

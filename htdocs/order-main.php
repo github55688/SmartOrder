@@ -3,15 +3,7 @@
 <html>
 <?php
 session_start();
-$_SESSION["temp"] = array($_POST["gender"], $_POST["age"]);
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "good";
-//連接資料庫
-$conn = new mysqli($servername, $username, $password, $dbname);
-//中文編碼
-mysqli_query($conn, "SET CHARACTER SET utf8");
+include_once("connect.php");
 //主餐
 $sql = "SELECT * FROM menu WHERE menu_type='B'";
 $result = $conn->query($sql);
@@ -25,10 +17,7 @@ $num = mysqli_num_rows($result);
 
 	<head>
 		<title>主餐選擇</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
 	</head>
 	<body class="right-sidebar is-preload">
 		<div id="page-wrapper">
