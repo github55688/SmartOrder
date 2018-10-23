@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
-
 <html>
 <?php
 session_start();
-include_once("connect.php");
+include_once "connect.php";
 $_SESSION["mainmeal"] = $_POST["mainmeal"];
 //湯頭
 $sql = "SELECT * FROM menu WHERE menu_type='A'";
@@ -18,6 +17,10 @@ $num = mysqli_num_rows($result);
 
 <head>
 	<title>湯頭選擇</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
 
 <body class="right-sidebar is-preload">
@@ -49,7 +52,13 @@ $num = mysqli_num_rows($result);
 echo "<form action='order-side.php' method='post'>";
 echo "<br>湯頭:";
 for ($counter = 0; $counter < $num; $counter++) {
-    echo "<input type='radio' name='soup' value='A0" . ($counter + 1) . "'>" . $soup[$counter];
+    echo "<div>";
+    echo "<input type='radio' id='soup0" . ($counter + 1) . "' name='soup' value='A0" . ($counter + 1) . "'>";
+    echo "<label for='soup0" . ($counter + 1) . "'>";
+    echo "<h2>" . $soup[$counter] . "</h2>";
+    echo "<p>The qugdgtr tdhtr trhlazy dog.</p>";
+    echo "</lable>";
+    echo "</div>";
 }
 
 echo "<br><input type='submit' value='GO'></form>";
