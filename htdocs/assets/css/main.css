@@ -2046,27 +2046,46 @@ input, select, textarea {
 				border-top: solid 2px #e5e5e5;
 			}
 
+/* Radio Button */
+input[type="radio"] {
+	display: none;
+  }
+  
+  label {
+	display: block;
+	background: white;
+	border: 1px solid #df7366;
+	border-radius: 2px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	text-align: center;
+	box-shadow: 0px 3px 10px -2px rgba(161, 170, 166, 0.5);
+	position: relative;
+  }
+  
+  input[type="radio"]:checked + label {
+	background: #df7366;
+	color: rgb(255, 255, 255);
+  }
+  input[type="radio"]:checked + label::after {
+	color: #3d3f43;
+	font-family: FontAwesome;
+	border: 2px solid #df7366;
+	content: "\f00c";
+	font-size: 24px;
+	position: absolute;
+	top: -25px;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 50px;
+	width: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 50%;
+	background: white;
+	box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.25);
+  }
 /* Button */
-	input[type="radio"],
-	.button123{
-		position: relative;
-		display: inline-block;
-		background: #1403fa;
-		color: #fff;
-		text-align: center;
-		border-radius: 0.5em;
-		text-decoration: none;
-		padding: 0.65em 3em 0.65em 3em;
-		border: 0;
-		cursor: pointer;
-		outline: 0;
-		font-weight: 300;
-		-moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-		-webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-		-ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-		transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-	}
-
 	input[type="button"],
 	input[type="submit"],
 	input[type="reset"],

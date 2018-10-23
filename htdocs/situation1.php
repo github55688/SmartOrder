@@ -36,6 +36,42 @@
 										<br>
 										<input type="submit" value="NEXT">
 										</form>
+										<br>
+										<div>
+  										<input type="radio" id="control_01" name="select" value="1" checked>
+ 			 <label for="control_01">
+    <h2>Easy</h2>
+    <p>The quick brown fox jumps over the lazy dog.</p>
+  </label>
+</div>
+<div>
+  <input type="radio" id="control_02" name="select" value="2">
+  <label for="control_02">
+    <h2>Medium</h2>
+    <p>The quick brown fox jumps over the lazy dog.</p>
+  </label>
+</div>
+<div>
+  <input type="radio" id="control_03" name="select" value="3">
+  <label for="control_03">
+    <h2>Hard</h2>
+    <p>The quick brown fox jumps over the lazy dog.</p>
+  </label>
+</div>
+<div>
+  <input type="radio" id="control_04" name="select" value="4">
+  <label for="control_04">
+    <h2>Hard</h2>
+    <p>The quick brown fox jumps over the lazy dog.</p>
+  </label>
+</div>
+<div>
+  <input type="radio" id="control_05" name="select" value="5">
+  <label for="control_05">
+    <h2>Suicide</h2>
+    <p>The quick brown fox jumps over the lazy dog.</p>
+  </label>
+</div>
 									</article>
 								</div>
 							</div>
