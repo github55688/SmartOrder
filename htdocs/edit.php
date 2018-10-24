@@ -1,10 +1,13 @@
-<!doctype html>
-<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<!DOCTYPE HTML>
+
 <html>
-<head><meta charset="utf-8"><title>無標題文件</title></head>
+<head><head>
+		<title>菜單管理</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head></head>
 <body>
 <?php
 include_once "connect.php";
