@@ -19,6 +19,7 @@
 							<header>
 								<h1>開始點餐</h1>
 								<hr>
+								<?php echo date("Ymd"); ?>
 								<p>包 含 智 慧 推 薦 的 點 餐 系 統</p>
 							</header>
 							<footer>

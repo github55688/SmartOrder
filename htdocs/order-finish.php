@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 <?php
-include_once("connect.php");
+include_once "connect.php";
 session_start();
 $situation = $_SESSION["situation"];
 $gender = $_SESSION["temp"][0];
@@ -15,6 +15,13 @@ $sidemeal = $_POST["sidemeal"];
 //$addmeal=$_POST["addmeal"];
 $sql = "INSERT INTO home1 (situation, gender, age, soup, mainmeal, sidemeal)
 VALUES ('$situation','$gender','$age','$soup','$mainmeal','$sidemeal')";
+if ($conn->query($sql) === true) {
+    echo "成功";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+$sql2 = "INSERT INTO 訂單 (訂單編號, 序號, 湯頭, 主餐, 副餐)
+VALUES ('','','$soup','$mainmeal','$sidemeal')";
 if ($conn->query($sql) === true) {
     echo "成功";
 } else {
