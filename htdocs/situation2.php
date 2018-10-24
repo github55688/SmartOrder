@@ -3,7 +3,12 @@
 <html>
 <?php
 session_start();
-$_SESSION["situation"] = $_POST["situation"];
+if (!empty($_SESSION["situation"])) {
+    echo "現在情境" . $_SESSION["situation"];
+} else {
+    $_SESSION["situation"] = $_POST["situation"];
+    echo "現在情境" . $_SESSION["situation"];
+}
 
 ?>
 

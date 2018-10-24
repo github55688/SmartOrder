@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-
+<?php
+session_start();
+$_SESSION["var"] = '0';
+?>
 <html>
 	<head>
 		<title>起始頁面</title>

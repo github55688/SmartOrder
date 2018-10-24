@@ -20,20 +20,9 @@ if ($conn->query($sql) === true) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-$sql2 = "INSERT INTO 訂單 (訂單編號, 序號, 湯頭, 主餐, 副餐)
-VALUES ('','','$soup','$mainmeal','$sidemeal')";
-if ($conn->query($sql) === true) {
-    echo "成功";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
 ?>
 
 <html>
-<head>
-<meta charset="utf-8">
-<title>home3</title>
-</head>
 <body>
 
 <table width="850" height="414" border="1">
@@ -50,7 +39,7 @@ if ($conn->query($sql) === true) {
     <td><?php echo $_SESSION["soup"] ?></td>
     <td><?php echo $_SESSION["mainmeal"] ?></td>
 	  <td><?php echo $_POST["sidemeal"] ?></td>
-	  <td><?php echo $_POST["addmeal"] ?></td>
+	  <td><?php //echo $_POST["addmeal"] ?></td>
     </tr>
     <tr>
     <th scope="row">&nbsp;</th>
@@ -61,12 +50,35 @@ if ($conn->query($sql) === true) {
     </tr>
   </tbody>
 </table>
-
 <p>&nbsp;</p>
-<div class="button">繼續點餐</div><br>
-<div class="button">完成點餐</div><br><br><br>
+
+<?php
+unset($_SESSION["temp"], $_SESSION["soup"], $_SESSION["mainmeal"]);
+
+?>
+
+<div class="button"><a href="situation2.php">繼續點餐</a></div><br>
+<div class="button"><a href="index.php">完成點餐</a></div><br><br><br>
 <div class="button">取消點餐</div>
 
 </body>
 </html>
-<?php session_destroy();?>
+
+<?php
+$result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單");
+$row = mysqli_fetch_array($result);
+echo "最大訂單編號: " . $row["max_id"];
+
+$var = $_SESSION["var"];
+echo "目前序號" . $var;
+$sql2 = "INSERT INTO 訂單 (訂單編號, 序號, 湯頭, 主餐, 副餐)
+VALUES ('20181024','$var','$soup','$mainmeal','$sidemeal')";
+if ($conn->query($sql2) === true) {
+    echo "成功";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+$var++;
+$_SESSION["var"] = $var;
+//echo $_SESSION["var"];
+?>

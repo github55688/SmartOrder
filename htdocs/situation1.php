@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <html>
-
+<?php
+session_start();
+echo $_SESSION["var"];
+?>
 <head>
 	<title>情境選擇</title>
 	<meta charset="utf-8" />
