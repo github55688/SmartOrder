@@ -65,18 +65,29 @@ unset($_SESSION["temp"], $_SESSION["soup"], $_SESSION["mainmeal"]);
 </html>
 
 <?php
-$result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單");
+$date=date("Ym");
+$result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單 Where Left(訂單編號,6)='$date'");
 $row = mysqli_fetch_array($result);
 echo "最大訂單編號: " . $row["max_id"];
 
+if(empty( $row["max_id"]))
+{
+$abc=$date.'001';
+}
+else
+{
+$abc=$row["max_id"]+1;
+}
+echo $abc;
 $var = $_SESSION["var"];
 echo "目前序號" . $var;
+
 $sql2 = "INSERT INTO 訂單 (訂單編號, 序號, 湯頭, 主餐, 副餐)
-VALUES ('20181024','$var','$soup','$mainmeal','$sidemeal')";
+VALUES ('$abc','$var','$soup','$mainmeal','$sidemeal')";
 if ($conn->query($sql2) === true) {
     echo "成功";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql2 . "<br>" . $conn->error;
 }
 $var++;
 $_SESSION["var"] = $var;
