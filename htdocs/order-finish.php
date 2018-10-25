@@ -1,8 +1,9 @@
 <!doctype html>
 <meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<noscript>
+  <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 <?php
 include_once "connect.php";
 session_start();
@@ -23,24 +24,25 @@ if ($conn->query($sql) === true) {
 ?>
 
 <html>
-<body>
-<table width="720" border="1">
-<tbody>
-  <tr height="100">
-  <th scope="col">訂單編號</th>
-  <th scope="col">序號</th>
-  <th scope="col">湯頭</th>
-  <th scope="col">主餐</th>
-  <th scope="col">副餐</th>
-  </tr>
-    
-<p>&nbsp;</p>
 
-<?php
+<body>
+  <table width="720" border="1">
+    <tbody>
+      <tr height="100">
+        <th scope="col">訂單編號</th>
+        <th scope="col">序號</th>
+        <th scope="col">湯頭</th>
+        <th scope="col">主餐</th>
+        <th scope="col">副餐</th>
+      </tr>
+
+      <p>&nbsp;</p>
+
+      <?php
 unset($_SESSION["temp"], $_SESSION["soup"], $_SESSION["mainmeal"]);
 
 ?>
-<?php
+      <?php
 $var = $_SESSION["var"];
 echo "目前序號" . $var;
 $date=date("Ym");
@@ -76,7 +78,8 @@ $var++;
 $_SESSION["var"] = $var;
 //echo $_SESSION["var"];
 
-
+$result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單");
+$row = mysqli_fetch_array($result);
 $sql0 = "SELECT * FROM 訂單 Where 訂單編號='$row[max_id]'";
 $result = $conn->query($sql0);
 $num = mysqli_num_rows($result);
@@ -97,10 +100,11 @@ for ($i = 1; $i <= $num; $i++) {
     }
     echo "</table>";
 ?>
-</tbody>
-</table>
-<div class="button"><a href="situation2.php">繼續點餐</a></div><br>
-<div class="button"><a href="index.php">完成點餐</a></div><br><br><br>
-<div class="button">取消點餐</div>
+    </tbody>
+  </table>
+  <div class="button"><a href="situation2.php">繼續點餐</a></div><br>
+  <div class="button"><a href="index.php">完成點餐</a></div><br><br><br>
+  <div class="button">取消點餐</div>
 </body>
+
 </html>

@@ -16,14 +16,6 @@ while ($row = $result->fetch_assoc()) {
 }
 $num = mysqli_num_rows($result);
 //-------------------------------
-$sql = "SELECT COUNT(*) AS cc, mainmeal FROM home1 GROUP BY mainmeal ORDER BY cc DESC LIMIT 3";
-$result = $conn->query($sql);
-$i = 1;
-while ($row = $result->fetch_assoc()) {
-    echo "第" . $i . "名 : " . $row["mainmeal"] . "<br>";
-    $i++;
-}
-$result->free();
 
 ?>
 
@@ -62,7 +54,6 @@ $result->free();
 							<?php
 //餐點選項按鈕
 echo "<form action='order-soup.php' method='post'>";
-echo "<br>主餐:";
 for ($counter = 0; $counter < $num; $counter++) {
     echo "<div>";
     echo "<input type='radio' id='main0" . ($counter + 1) . "' name='mainmeal' value='B0" . ($counter + 1) . "'>";
@@ -72,12 +63,28 @@ for ($counter = 0; $counter < $num; $counter++) {
     echo "</lable>";
     echo "</div>";
 }
-echo "<br><input type='submit' value='GO'></form>";
+echo "<br><input type='submit' value='NEXT'></form>";
 ?>
 						</article>
-						<div class="col-4 col-12-mobile" id="sidebar">
-							123
-						</div>
+					</div>
+					<div class="col-4 col-12-mobile" id="sidebar">
+						<section>
+							<header>
+								<h3>推薦區</h3>
+							</header>
+							<p>
+								<?php
+						$sql = "SELECT COUNT(*) AS cc, mainmeal FROM home1 GROUP BY mainmeal ORDER BY cc DESC LIMIT 3";
+						$result = $conn->query($sql);
+						$i = 1;
+						while ($row = $result->fetch_assoc()) {
+    					echo "第" . $i . "名 : " . $row["mainmeal"] . "<br>";
+    					$i++;
+						}
+						?>
+							</p>
+						</section>
+
 					</div>
 				</div>
 			</div>
