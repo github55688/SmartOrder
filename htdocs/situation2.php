@@ -9,7 +9,7 @@ if (!empty($_SESSION["situation"])) {
     $_SESSION["situation"] = $_POST["situation"];
     echo "現在情境" . $_SESSION["situation"];
 }
-
+echo "現在序號" . $_SESSION["var"];
 ?>
 
 <head>

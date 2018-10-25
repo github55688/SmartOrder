@@ -5,6 +5,7 @@
 session_start();
 $_SESSION["temp"] = array($_POST["gender"], $_POST["age"]);
 include_once "connect.php";
+echo $_SESSION["var"];
 //主餐
 $sql = "SELECT * FROM menu WHERE menu_type='B'";
 $result = $conn->query($sql);

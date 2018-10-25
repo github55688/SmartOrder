@@ -102,8 +102,8 @@ if ($id == "") {
         $menu_price = $row[3];
         $menu_inventory = $row[4];
         echo "<tr><form>";
-        echo "<td align='center'><input type=text name='menu_id' value='$menu_id'></td>";
-        echo "<td align='center'><input type=text name='menu_type' value='$menu_type'></td>";
+        echo "<td align='center'>$menu_id</td>";
+        echo "<td align='center'>$menu_type</td>";
         echo "<td align='center'><input type=text name='menu_name' value='$menu_name'></td>";
         echo "<td align='center'><input type=text name='menu_price' value='$menu_price'></td>";
         echo "<td align='center'><input type=text name='menu_inventory' value='$menu_inventory'></td>";

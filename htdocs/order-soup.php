@@ -4,6 +4,7 @@
 session_start();
 include_once "connect.php";
 $_SESSION["mainmeal"] = $_POST["mainmeal"];
+echo $_SESSION["var"];
 //湯頭
 $sql = "SELECT * FROM menu WHERE menu_type='A'";
 $result = $conn->query($sql);

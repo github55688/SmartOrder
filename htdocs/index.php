@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <?php
 session_start();
-$_SESSION["var"] = '0';
+$_SESSION["var"] = '1';
 ?>
 <html>
 	<head>
