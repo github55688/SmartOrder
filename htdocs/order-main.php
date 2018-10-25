@@ -5,7 +5,7 @@
 session_start();
 $_SESSION["temp"] = array($_POST["gender"], $_POST["age"]);
 include_once "connect.php";
-echo $_SESSION["var"];
+//echo $_SESSION["var"];
 //主餐
 $sql = "SELECT * FROM menu WHERE menu_type='B'";
 $result = $conn->query($sql);
@@ -15,6 +15,16 @@ while ($row = $result->fetch_assoc()) {
     $i++;
 }
 $num = mysqli_num_rows($result);
+//-------------------------------
+$sql = "SELECT COUNT(*) AS cc, mainmeal FROM home1 GROUP BY mainmeal ORDER BY cc DESC LIMIT 3";
+$result = $conn->query($sql);
+$i = 1;
+while ($row = $result->fetch_assoc()) {
+    echo "第" . $i . "名 : " . $row["mainmeal"] . "<br>";
+    $i++;
+}
+$result->free();
+
 ?>
 
 <head>
@@ -47,8 +57,9 @@ $num = mysqli_num_rows($result);
 		<div class="wrapper style1">
 			<div class="container">
 				<div class="row gtr-200">
-					<article id="main">
-<?php
+					<div class="col-8 col-12-mobile" id="content">
+						<article id="main">
+							<?php
 //餐點選項按鈕
 echo "<form action='order-soup.php' method='post'>";
 echo "<br>主餐:";
@@ -63,7 +74,11 @@ for ($counter = 0; $counter < $num; $counter++) {
 }
 echo "<br><input type='submit' value='GO'></form>";
 ?>
-					</article>
+						</article>
+						<div class="col-4 col-12-mobile" id="sidebar">
+							123
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -2,6 +2,7 @@
 <?php
 session_start();
 $_SESSION["var"] = '1';
+unset($_SESSION["situation"]);
 ?>
 <html>
 	<head>
