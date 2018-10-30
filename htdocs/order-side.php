@@ -5,7 +5,6 @@
 session_start();
 $_SESSION["soup"] = $_POST["soup"];
 include_once "connect.php";
-echo $_SESSION["var"];
 //副餐
 $sql = "SELECT * FROM menu WHERE menu_type='C'";
 $result = $conn->query($sql);

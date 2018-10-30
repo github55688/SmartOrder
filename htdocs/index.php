@@ -1,7 +1,9 @@
 <!DOCTYPE HTML>
 <?php
 session_start();
+//序號起始
 $_SESSION["var"] = '1';
+//清空情境
 unset($_SESSION["situation"]);
 ?>
 <html>
@@ -38,7 +40,7 @@ unset($_SESSION["situation"]);
 				<ul>
 					<li><a href="index.php">開始點餐</a></li>
 					<li><a href="edit.php">菜單管理</a></li>
-					<li><a href="output1.php">weka</a></li>
+					<li><a href="man.php">weka</a></li>
 				</ul>
 			</nav>
 		</div>
