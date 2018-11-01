@@ -74,6 +74,7 @@ $row = mysqli_fetch_array($result);
 $sql0 = "SELECT * FROM 訂單 Where 訂單編號='$row[max_id]'";
 $result = $conn->query($sql0);
 $num = mysqli_num_rows($result);
+$total=0;
 for ($i = 1; $i <= $num; $i++) {
     $row0 = mysqli_fetch_row($result);
     $訂單編號 = $row[0];
@@ -81,16 +82,30 @@ for ($i = 1; $i <= $num; $i++) {
     $湯頭 = $row0[2];
     $主餐 = $row0[3];
     $副餐 = $row0[4];
+    $result_soup = mysqli_query($conn, "SELECT menu_name AS soup FROM menu Where menu_id='$row0[2]'");
+    $row_soup = mysqli_fetch_array($result_soup);
+    $result_main = mysqli_query($conn, "SELECT menu_name AS main FROM menu Where menu_id='$row0[3]'");
+    $row_main = mysqli_fetch_array($result_main);
+    $result_side = mysqli_query($conn, "SELECT menu_name AS side FROM menu Where menu_id='$row0[4]'");
+    $row_side = mysqli_fetch_array($result_side);
+    $result_price = mysqli_query($conn, "SELECT menu_price AS price FROM menu Where menu_id='$row0[3]'");
+    $row_price = mysqli_fetch_array($result_price);
     echo "<tr><form>";
     echo "<td align='center'>$訂單編號</td>";
     echo "<td align='center'>$序號</td>";
-    echo "<td align='center'>$湯頭</td>";
-    echo "<td align='center'>$主餐</td>";
-    echo "<td align='center'>$副餐</td>";
+    echo "<td align='center'>$row_soup[soup]</td>";
+    echo "<td align='center'>$row_main[main]</td>";
+    echo "<td align='center'>$row_side[side]</td>";
+    echo "<td align='center'>$row_price[price]</td>";
     echo "</form></tr>";
+    $total=$total+$row_price["price"];
 }
+
 echo "</table>";
+echo "總金額: . $total";
+
 ?>
+<br>
     </tbody>
   </table>
   <div class="button"><a href="situation2.php">繼續點餐</a></div><br>
