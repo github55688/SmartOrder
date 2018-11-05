@@ -59,7 +59,6 @@ for ($counter = 0; $counter < $num; $counter++) {
     echo "<input type='radio' id='main0" . ($counter + 1) . "' name='mainmeal' value='B0" . ($counter + 1) . "'>";
     echo "<label for='main0" . ($counter + 1) . "'>";
     echo "<h2>" . $main[$counter] . "</h2>";
-    echo "<p>The quick brown fox jumps over the lazy dog.</p>";
     echo "</lable>";
     echo "</div>";
 }
@@ -68,18 +67,18 @@ echo "<br><input type='submit' value='NEXT'></form>";
 						</article>
 					</div>
 					<div class="col-4 col-12-mobile" id="sidebar">
-						<section>
+						<label>
 							<header>
-								<h3>Smart推薦區</h3>
+								<h2>Smart推薦區</h2>
 							</header>
 							<p>
 								<?php include_once "man1.php";?>
 							</p>
-						</section>
-						<br><br>
-						<section>
+						</label>
+						
+						<label>
 							<header>
-								<h3>熱門推薦區</h3>
+								<h2>熱門推薦區</h2>
 							</header>
 							<p>
 								<?php
@@ -93,8 +92,7 @@ while ($row = $result->fetch_assoc()) {
 }
 ?>
 							</p>
-						</section>
-
+						</label>
 					</div>
 				</div>
 			</div>

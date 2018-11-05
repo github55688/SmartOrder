@@ -115,17 +115,15 @@ if ($id == "") {
     echo "</table>";
 } else {
     //取得參數
-    $ii = !empty($_GET["menu_id"]) ? $_GET["menu_id"] : null;
-    $t = !empty($_GET["menu_type"]) ? $_GET["menu_type"] : null;
     $n = !empty($_GET["menu_name"]) ? $_GET["menu_name"] : null;
     $p = !empty($_GET["menu_price"]) ? $_GET["menu_price"] : null;
     $in = !empty($_GET["menu_inventory"]) ? $_GET["menu_inventory"] : null;
     $Submit = !empty($_GET["Submit"]) ? $_GET["Submit"] : null;
     if ($Submit == '修改') {
-        $sql = "UPDATE menu SET menu_name='$n',menu_type='$t',menu_price='$p',menu_inventory='$in' WHERE menu_id='$ii'";
+        $sql = "UPDATE menu SET menu_name='$n',menu_price='$p',menu_inventory='$in' WHERE menu_id='$id'";
         $msg = '修改完成';
     } else if ($Submit == '刪除') {
-        $sql = "DELETE FROM menu WHERE menu_id='$ii'";
+        $sql = "DELETE FROM menu WHERE menu_id='$id'";
         $msg = '刪除完成';
     } else {
         echo '錯誤';
@@ -133,6 +131,7 @@ if ($id == "") {
     }
     mysqli_query($conn, $sql);
     echo ($msg);
+    header("location: edit.php");
 }
 
 mysqli_close($conn);

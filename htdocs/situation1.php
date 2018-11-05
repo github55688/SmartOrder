@@ -77,8 +77,10 @@ echo $_SESSION["var"];
 						</div>
 						</article>
 						<article class="col-4 col-12-mobile special">
-						<input type="submit" value="NEXT">
 						</article>
+						<div>
+						<input type="submit" value="NEXT">
+						</div>
 					</form>
 					
 				</div>

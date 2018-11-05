@@ -37,56 +37,57 @@ echo "現在序號" . $_SESSION["var"];
         </div>
         <div class="wrapper style1">
             <div class="container">
-                <div class="row gtr-200">
-
-                    <article id="main">
+                <div class="row">
+                <article class="col-4 col-12-mobile special">
                         <form action="order-main.php" method="post">
-                            <p>性別選擇</p>
-                            <section>
                                 <div>
                                     <input type="radio" id="gender_01" name="gender" value="boy">
                                     <label for="gender_01">
                                         <h2>男</h2>
-                                        <p>rjeogjrjglksngl slsjgo ejsojg.</p>
                                     </label>
                                 </div>
+                                </article>
+                                <article class="col-4 col-12-mobile special">
                                 <div>
                                     <input type="radio" id="gender_02" name="gender" value="girl">
                                     <label for="gender_02">
                                         <h2>女</h2>
-                                        <p>The quick brown fox jumps over the lazy dog.</p>
                                     </label>
                                 </div>
-                            </section>
-                            <br>
-                            <p>年齡層</p>
-                            <section>
+                                </article>
+                                <article class="col-4 col-12-mobile special">
+                                </article>
+                            
+                                <article class="col-4 col-12-mobile special">
                                 <div>
                                     <input type="radio" id="age_01" name="age" value="young">
                                     <label for="age_01">
                                         <h2>青年</h2>
-                                        <p>rgjoirgj rgoi shoihrjl sgrg.</p>
                                     </label>
                                 </div>
+                                </article>
+                                <article class="col-4 col-12-mobile special">
                                 <div>
                                     <input type="radio" id="age_02" name="age" value="mid">
                                     <label for="age_02">
                                         <h2>中年</h2>
-                                        <p>The quick brown fox jumps over the lazy dog.</p>
                                     </label>
                                 </div>
+                                </article>
+                                <article class="col-4 col-12-mobile special">
                                 <div>
                                     <input type="radio" id="age_03" name="age" value="old">
                                     <label for="age_03">
                                         <h2>老年</h2>
-                                        <p>The quick brown fox jumps over the lazy dog.</p>
                                     </label>
                                 </div>
-                            </section>
-                            <br>
-                            <input type="submit" value="NEXT">
+                                </article>
+                            
+                            <div>
+                            <input type="submit" value="NEXT" align=right >
+</div>
                         </form>
-                    </article>
+                    
 
                 </div>
             </div>
