@@ -19,39 +19,39 @@ $num = mysqli_num_rows($result);
 
 ?>
 
-<head>
-	<title>主餐選擇</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
+    <head>
+        <title>主餐選擇</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-</head>
+    </head>
 
-<body class="right-sidebar is-preload">
-	<div id="page-wrapper">
-		<!-- Header -->
-		<div id="header">
-			<!-- Inner -->
-			<div class="inner">
-				<header>
-					<h1>主餐</h1>
-				</header>
-			</div>
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li><a href="index.php">取消點餐</a></li>
-				</ul>
-			</nav>
-		</div>
-		<!-- Main -->
-		<div class="wrapper style1">
-			<div class="container">
-				<div class="row gtr-200">
-					<div class="col-8 col-12-mobile" id="content">
-						<article id="main">
-							<?php
+    <body class="right-sidebar is-preload">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <div id="header">
+                <!-- Inner -->
+                <div class="inner">
+                    <header>
+                        <h1>主餐</h1>
+                    </header>
+                </div>
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.php">取消點餐</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Main -->
+            <div class="wrapper style1">
+                <div class="container">
+                    <div class="row gtr-200">
+                        <div class="col-8 col-12-mobile" id="content">
+                            <article id="main">
+                                <?php
 //餐點選項按鈕
 echo "<form action='order-soup.php' method='post'>";
 for ($counter = 0; $counter < $num; $counter++) {
@@ -64,10 +64,10 @@ for ($counter = 0; $counter < $num; $counter++) {
 }
 echo "<br><input type='submit' value='NEXT'></form>";
 ?>
-						</article>
-					</div>
-					<div class="col-4 col-12-mobile" id="sidebar">
-						<label>
+                            </article>
+                        </div>
+                        <div class="col-4 col-12-mobile" id="sidebar">
+                            <label>
 							<header>
 								<h2>Smart推薦區</h2>
 							</header>
@@ -75,8 +75,8 @@ echo "<br><input type='submit' value='NEXT'></form>";
 								<?php include_once "man1.php";?>
 							</p>
 						</label>
-						
-						<label>
+
+                            <label>
 							<header>
 								<h2>熱門推薦區</h2>
 							</header>
@@ -93,11 +93,11 @@ while ($row = $result->fetch_assoc()) {
 ?>
 							</p>
 						</label>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 
 </html>
