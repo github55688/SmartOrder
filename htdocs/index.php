@@ -40,7 +40,8 @@ unset($_SESSION["situation"]);
                     <ul>
                         <li><a href="index.php">開始點餐</a></li>
                         <li><a href="edit.php">菜單管理</a></li>
-                        <li><a href="man.php">weka</a></li>
+                        <li><a href="edit2.php">規則</a></li>
+                        <li><a href="output1.php">匯出</a></li>
                     </ul>
                 </nav>
             </div>
