@@ -6,7 +6,7 @@
     <title>規則管理</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/mai.css" />
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
@@ -27,10 +27,10 @@ include_once "connect.php";
             </ul>
         </nav>
     </div>
-    <form action='edit.php' method='post'>
+    <form action='recommend_edit.php' method='post'>
         <h3>情境 :</h3>
         <select name='situation'>
-            <option>選擇類別</option>
+            <option>選擇</option>
             <option value='family'>家人</option>
             <option value='friend'>朋友</option>
             <option value='boyandgirl'>情侶</option>
@@ -38,99 +38,74 @@ include_once "connect.php";
             <option value='other'>其他</option>
         </select>
         <h3>性別 :</h3>
-        <select name='mytypes'>
-            <option>選擇類別</option>
+        <select name='gender'>
+            <option>選擇</option>
             <option value='boy'>男</option>
             <option value='girl'>女</option>
         </select>
         <h3>年齡 :</h3>
         <select name='age'>
-            <option>選擇類別</option>
+            <option>選擇</option>
             <option value='young'>青年</option>
             <option value='mid'>中年</option>
             <option value='old'>老年</option>
         </select>
         <h3>主餐 :</h3>
-        <select name='mytypes'>
-            <option>選擇類別</option>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-            <option value='D'>D</option>
+        <select name='mainmeal'>
+            <option>選擇</option>
+            <?php
+$result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='B'");
+while ($row = $result->fetch_assoc()) {
+    echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
+}
+?>
         </select>
         <h3>湯頭 :</h3>
-        <select name='mytypes'>
-            <option>選擇類別</option>
-            <option value='A'>A</option>
-            <option value='B'>B</option>
-            <option value='C'>C</option>
-            <option value='D'>D</option>
+        <select name='soup'>
+            <option>選擇</option>
+            <?php
+$result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='A'");
+while ($row = $result->fetch_assoc()) {
+    echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
+}
+?>
         </select>
-        <input type='submit' name='send' value='新增'>
+        <input type='submit' name='send' value='新增規則'>
         <br><br><br>
     </form>
 
 <?php
-//表單全部不為空
-if (!empty($_POST["myname"]) && !empty($_POST["myprice"]) && !empty($_POST["mytypes"])) {
-    //查詢有幾筆資料
-    $mytypes = $_POST["mytypes"];
-    $sql = "SELECT * FROM menu WHERE menu_type='$mytypes'";
-    $result = $conn->query($sql);
-    $num = mysqli_num_rows($result);
-    $num++;
-    //前面加零
-    $stringA = '0';
-    $stringB = $stringA . $num;
-    //接收值
-    $myname = $_POST["myname"];
-    $myprice = $_POST["myprice"];
-    //編號10以下
-    if ($num < 10) {
-        $sql = "INSERT INTO menu (menu_id, menu_type, menu_name, menu_price)
-            VALUES ('$mytypes$stringB','$mytypes','$myname','$myprice')";
-        if ($conn->query($sql) === true) {
-            echo "新紀錄插入成功";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
+//如果其中任一不為空
+if (!empty($_POST['situation']) || !empty($_POST['gender']) || !empty($_POST['age']) || !empty($_POST['mainmeal']) || !empty($_POST['soup'])) {
+    $situation = $_POST['situation'];
+    $gender = $_POST['gender'];
+    $age = $_POST['age'];
+    $mainmeal = $_POST['mainmeal'];
+    $soup = $_POST['soup'];
+    $sql = "INSERT INTO 推薦 (情境, 性別, 年齡, 主餐, 湯頭) VALUES ('$situation','$gender','$age','$mainmeal','$soup')";
+    if ($conn->query($sql) === true) {
+        echo "新紀錄插入成功";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    //編號10以上
-    else {
-        $sql = "INSERT INTO menu (menu_id, menu_type, menu_name, menu_price)
-            VALUES ('$mytypes$num','$mytypes','$myname','$myprice')";
-        if ($conn->query($sql) === true) {
-            echo "新紀錄插入成功";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-    mysqli_free_result($result);
-}
-//點選提交AND其中有空值
-else if (!empty($_POST["send"]) &&
-    (empty($_POST["myname"]) || empty($_POST["myprice"]) || empty($_POST["mytypes"]))) {
-    echo '<script type="text/javascript">';
-    echo 'alert("請輸入完整資訊!")';
-    echo '</script>';
 }
 ?>
 
 
 
 
-<table width="720" border="1">
-    <tbody>
-        <tr height="100">
-            <th scope="col">編號</th>
-            <th scope="col">情境</th>
-            <th scope="col">性別</th>
-            <th scope="col">年齡</th>
-            <th scope="col">主餐</th>
-            <th scope="col">湯頭</th>
-            <th scope="col">修改/刪除</th>
-        </tr>
-<?php
+    <table width="720" border="1">
+        <tbody>
+            <tr height="100">
+                <th scope="col">編號</th>
+                <th scope="col">情境</th>
+                <th scope="col">性別</th>
+                <th scope="col">年齡</th>
+                <th scope="col">主餐</th>
+                <th scope="col">湯頭</th>
+                <th scope="col">修改/刪除</th>
+            </tr>
+            <?php
 $id = !empty($_GET["id"]) ? $_GET["id"] : "";
 if ($id == "") {
     $sql = "SELECT * FROM 推薦";
@@ -140,22 +115,49 @@ if ($id == "") {
     for ($i = 1; $i <= $num; $i++) {
         $row = mysqli_fetch_row($result);
         $menu_id = $row[0];
-        $menu_type = $row[1];
-        $menu_name = $row[2];
-        $menu_price = $row[3];
-        $menu_inventory = $row[4];
-        $rrr = $row[5];
-        echo "<tr><form>";
-        echo "<td align='center'>$menu_id</td>";
-        echo "<td align='center'><input type=text name='menu_type' value='$menu_type'></td>";
-        echo "<td align='center'><input type=text name='menu_name' value='$menu_name'></td>";
-        echo "<td align='center'><input type=text name='menu_price' value='$menu_price'></td>";
-        echo "<td align='center'><input type=text name='menu_inventory' value='$menu_inventory'></td>";
-        echo "<td align='center'><input type=text name='rrr' value='$rrr'></td>";
-        echo "<td align='center'><input type='Submit' name='Submit' value='修改'/>
-                        <input type='Submit'name='Submit' value='刪除'/>
-                        <input type='hidden'name='id' value='$menu_id'/></td>";
-        echo "</form></tr>";
+        $menu_type = $row[1]; //situation
+        $menu_name = $row[2]; //gender
+        $menu_price = $row[3]; //age
+        $menu_inventory = $row[4]; //mainmeal
+        $rrr = $row[5]; //soup
+        switch ($menu_type) {
+            case 'family':
+                $menu_type = '家人';
+                break;
+            case 'friend':
+                $menu_type = '朋友';
+                break;
+            case 'boyandgirl':
+                $menu_type = '情侶';
+                break;
+            case 'one':
+                $menu_type = '個人';
+                break;
+            case 'other':
+                $menu_type = '其他';
+                break;
+        }
+        echo "<tr><form>
+        <td align='center'>$menu_id</td>
+        <td align='center'>
+        $menu_type
+        </td>
+        <td align='center'>
+        $menu_name
+        </td>
+        <td align='center'>
+        $menu_price
+        </td>
+        <td align='center'>
+        $menu_inventory
+        </td>
+        <td align='center'>
+        $rrr
+        </td>
+        <td align='center'>
+        <input type='Submit'name='Submit' value='刪除'/>
+        <input type='hidden'name='id' value='$menu_id'/></td>
+        </form></tr>";
     }
     echo "</table>";
 } else {
@@ -167,10 +169,7 @@ if ($id == "") {
     $ing = !empty($_GET["rrr"]) ? $_GET["rrr"] : null;
     $Submit = !empty($_GET["Submit"]) ? $_GET["Submit"] : null;
 
-    if ($Submit == '修改') {
-        $sql = "UPDATE 推薦 SET 情境='$nn',性別='$n',年齡='$p',主餐='$in',湯頭='$ing' WHERE 編號='$id'";
-        $msg = '修改完成';
-    } else if ($Submit == '刪除') {
+    if ($Submit == '刪除') {
         $sql = "DELETE FROM 推薦 WHERE 編號='$id'";
         $msg = '刪除完成';
     } else {
@@ -179,7 +178,7 @@ if ($id == "") {
     }
     mysqli_query($conn, $sql);
     echo ($msg);
-    header("location: edit2.php");
+    header("location: recommend_edit.php");
 }
 ?>
 
