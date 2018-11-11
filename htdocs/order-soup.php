@@ -70,7 +70,7 @@ echo "<br><input type='submit' value='NEXT'></form>";
 								<h2>Smart推薦區</h2>
 							</header>
 							<p>
-								<?php include_once "man2.php";?>
+								<?php include_once "recommend_soup.php";?>
 							</p>
 						</label>
 
@@ -79,15 +79,7 @@ echo "<br><input type='submit' value='NEXT'></form>";
 								<h2>熱門推薦區</h2>
 							</header>
 							<p>
-								<?php
-$sql = "SELECT COUNT(*) AS cc, mainmeal FROM home1 GROUP BY mainmeal ORDER BY cc DESC LIMIT 3";
-$result = $conn->query($sql);
-$i = 1;
-while ($row = $result->fetch_assoc()) {
-    echo "第" . $i . "名 : " . $row["mainmeal"] . "<br>";
-    $i++;
-}
-?>
+                            <?php $thispage = "soup";include_once "popular.php";?>
 							</p>
 						</section>
 

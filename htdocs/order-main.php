@@ -4,7 +4,6 @@
 <?php
 session_start();
 $_SESSION["temp"] = array($_POST["gender"], $_POST["age"]);
-
 include_once "connect.php";
 
 //主餐
@@ -72,7 +71,7 @@ echo "<br><input type='submit' value='NEXT'></form>";
 								<h2>Smart推薦區</h2>
 							</header>
 							<p>
-								<?php include_once "man1.php";?>
+								<?php include_once "recommend_main.php";?>
 							</p>
 						</label>
 
@@ -81,16 +80,7 @@ echo "<br><input type='submit' value='NEXT'></form>";
 								<h2>熱門推薦區</h2>
 							</header>
 							<p>
-								<?php
-//熱門推薦
-$sql = "SELECT COUNT(*) AS cc, mainmeal FROM home1 GROUP BY mainmeal ORDER BY cc DESC LIMIT 3";
-$result = $conn->query($sql);
-$i = 1;
-while ($row = $result->fetch_assoc()) {
-    echo "第" . $i . "名 : " . $row["mainmeal"] . "<br>";
-    $i++;
-}
-?>
+                            <?php $thispage = "mainmeal";include_once "popular.php";?>
 							</p>
 						</label>
                         </div>

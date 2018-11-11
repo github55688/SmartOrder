@@ -40,8 +40,8 @@ unset($_SESSION["situation"]);
                     <ul>
                         <li><a href="index.php">開始點餐</a></li>
                         <li><a href="edit.php">菜單管理</a></li>
-                        <li><a href="edit2.php">規則</a></li>
-                        <li><a href="output1.php">匯出</a></li>
+                        <li><a href="recommend_edit.php">規則</a></li>
+                        <li><a href="recommend_output.php">匯出</a></li>
                     </ul>
                 </nav>
             </div>
@@ -56,5 +56,4 @@ unset($_SESSION["situation"]);
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
     </body>
-
     </html>
