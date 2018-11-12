@@ -42,6 +42,7 @@ unset($_SESSION["situation"]);
                         <li><a href="edit.php">菜單管理</a></li>
                         <li><a href="recommend_edit.php">規則</a></li>
                         <li><a href="recommend_output.php">匯出</a></li>
+                        <li><a href="pdf.php">PDF</a></li>
                     </ul>
                 </nav>
             </div>
