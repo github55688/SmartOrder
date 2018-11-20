@@ -1,12 +1,7 @@
 <?php
-require "mpdf/mpdf.php";
-$mpdf = new mPDF('utf-8', 'A4');
-ob_start();
 
-include 'order_money.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-$html = ob_get_contents();
-ob_end_clean();
-$mpdf->WriteHTML($html);
+$mpdf = new \Mpdf\Mpdf();
+$mpdf->WriteHTML('<h1>國</h1>');
 $mpdf->Output();
-exit;
