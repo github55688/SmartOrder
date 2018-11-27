@@ -6,7 +6,7 @@ $sql0 = "SELECT * FROM 訂單 Where 訂單編號='$row[max_id]'";
 $result = $conn->query($sql0);
 $num = mysqli_num_rows($result);
 $total = 0;
-for ($i = 1; $i <= $num; $i++) {
+for ($i = 0; $i < $num; $i++) {
     $row0 = mysqli_fetch_row($result);
     $訂單編號 = $row[0];
     $序號 = $row0[1];
@@ -22,7 +22,7 @@ for ($i = 1; $i <= $num; $i++) {
     $result_price = mysqli_query($conn, "SELECT menu_price AS price FROM menu Where menu_id='$row0[3]'");
     $row_price = mysqli_fetch_array($result_price);
 
-    echo $訂單編號 . '<br>' . $序號 . '<br>' . $row_soup['soup'] . $row_main['main'] . $row_side['side'] . '<br>' . $row_price['price'] . '<br>';
+    $html[$i]= '序號' . $序號 . '<br>' . $row_soup['soup']. '+' . $row_main['main'].'+' . $row_side['side'] . '<br>$' . $row_price['price'] . '<br>';
     $total = $total + $row_price["price"];
 }
 echo "Total: " . $total;
