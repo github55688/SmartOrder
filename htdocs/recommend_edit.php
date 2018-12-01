@@ -1,83 +1,68 @@
 <!DOCTYPE HTML>
-
 <html>
-
 <head>
     <title>規則管理</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/mai.css" />
-    <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="assets/css/mainn.css" />
 </head>
-
+<?php include_once "connect.php";?>
+<!--------------------->
 <body>
-    <?php
-include_once "connect.php";
-?>
-    <div id="header">
-        <div class="inner">
-            <header>
-                <h1>規則管理</h1>
-            </header>
-        </div>
-        <nav id="nav">
-            <ul>
-                <li><a href="index.php">返回</a></li>
-            </ul>
-        </nav>
-    </div>
-    <form action='recommend_edit.php' method='post'>
-        <h3>情境 :</h3>
-        <select name='situation'>
-            <option></option>
-            <option value='family'>家人</option>
-            <option value='friend'>朋友</option>
-            <option value='boyandgirl'>情侶</option>
-            <option value='one'>個人</option>
-            <option value='other'>其他</option>
-        </select>
-        <h3>性別 :</h3>
-
-        <select name='gender'>
-            <option></option>
-            <option value='boy'>男</option>
-            <option value='girl'>女</option>
-        </select>
-        <h3>年齡 :</h3>
-        <select name='age'>
-            <option></option>
-            <option value='young'>青年</option>
-            <option value='mid'>中年</option>
-            <option value='old'>老年</option>
-            <option value='null'>不設定</option>
-        </select>
-        <h3>主餐 :</h3>
-        <select name='mainmeal'>
-            <option></option>
-            <?php
+<h3><a href="index.php">返回</a></h3>
+<h1>推薦規則管理</h1>
+<!-- ... 插入規則 ... -->
+<form action='recommend_edit.php' method='post'>
+    <span>
+    情境 :
+    <select name='situation'>
+        <option></option>
+        <option value='family'>家人</option>
+        <option value='friend'>朋友</option>
+        <option value='boyandgirl'>情侶</option>
+        <option value='one'>個人</option>
+        <option value='other'>其他</option>
+    </select>
+    性別 :
+    <select name='gender'>
+        <option></option>
+        <option value='boy'>男</option>
+        <option value='girl'>女</option>
+    </select>
+    年齡 :
+    <select name='age'>
+        <option></option>
+        <option value='young'>青年</option>
+        <option value='mid'>中年</option>
+        <option value='old'>老年</option>
+        <option value='null'>不設定</option>
+    </select>
+    主餐 :
+    <select name='mainmeal'>
+        <option></option>
+<?php
 $result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='B'");
 while ($row = $result->fetch_assoc()) {
     echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
 }
 ?>
-        </select>
-        <h3>湯頭 :</h3>
-        <select name='soup'>
-            <option></option>
-            <?php
+    </select>
+    湯頭 :
+    <select name='soup'>
+        <option></option>
+<?php
 $result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='A'");
 while ($row = $result->fetch_assoc()) {
     echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
 }
 ?>
-            <option value='null'>不設定</option>
-        </select>
-        <input type='submit' name='send' value='新增規則'>
-        <br><br><br>
-    </form>
+        <option value='null'>不設定</option>
+    </select>
+    <input id='my1210' type='submit' name='send' value='Go'>
+    </span>
+</form>
 
-    <?php
+<!-- ... 點選插入 ... -->
+<?php
 //如果其中任一不為空
 if (!empty($_POST['situation']) && !empty($_POST['gender']) && !empty($_POST['age']) && !empty($_POST['mainmeal']) && !empty($_POST['soup'])) {
 
@@ -98,24 +83,23 @@ if (!empty($_POST['situation']) && !empty($_POST['gender']) && !empty($_POST['ag
 //點選提交 其中有空值
 else if (!empty($_POST["send"]) &&
     (empty($_POST["situation"]) || empty($_POST["gender"]) || empty($_POST["age"]) || empty($_POST["mainmeal"]) || empty($_POST["soup"]))) {
-    echo '<script type="text/javascript">';
-    echo 'alert("請輸入完整資訊!")';
-    echo '</script>';
+    echo '<script type="text/javascript">alert("請輸入完整資訊!")</script>';
 }
 ?>
-<!-- ... 表格顯示 ... -->
-    <table width="720" border="1">
-        <tbody>
-            <tr height="100">
-                <th scope="col">編號</th>
-                <th scope="col">情境</th>
-                <th scope="col">性別</th>
-                <th scope="col">年齡</th>
-                <th scope="col">主餐</th>
-                <th scope="col">湯頭</th>
-                <th scope="col">修改/刪除</th>
-            </tr>
-            <?php
+
+<!-- ... 表格顯示 ... --><br><br>
+<table class="bordered">
+<thead>
+    <tr>
+        <th>#</th>
+                    <th>情境</th>
+                    <th>性別</th>
+                    <th>年齡</th>
+                    <th>主餐</th>
+                    <th>湯頭</th>
+                    <th>刪除</th>
+    </tr></thead>
+                <?php
 $id = !empty($_GET["id"]) ? $_GET["id"] : "";
 if ($id == "") {
     $sql = "SELECT * FROM 推薦";
@@ -173,24 +157,24 @@ if ($id == "") {
         $name2 = mysqli_fetch_row($result3);
         $rrr = $name2[0];
         echo "<tr><form>
-        <td align='center'>$menu_id</td>
-        <td align='center'>
+        <td>$menu_id</td>
+        <td>
         $menu_type
         </td>
-        <td align='center'>
+        <td>
         $menu_name
         </td>
-        <td align='center'>
+        <td>
         $menu_price
         </td>
-        <td align='center'>
+        <td>
         $menu_inventory
         </td>
-        <td align='center'>
+        <td>
         $rrr
         </td>
-        <td align='center'>
-        <input type='Submit'name='Submit' value='刪除'/>
+        <td>
+        <input type='Submit'name='Submit' value='Delete'/>
         <input type='hidden'name='id' value='$menu_id'/></td>
         </form></tr>";
     }
@@ -216,9 +200,10 @@ if ($id == "") {
     header("location: recommend_edit.php");
 }
 ?>
+</table>
 
-        </tbody>
-    </table>
+<!-- ... 插入規則 ... --><br><br>
+<h1>主廚規則管理</h1>
+
 </body>
-
 </html>

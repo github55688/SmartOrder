@@ -89,7 +89,7 @@ echo "<br><input type='submit' value='NEXT'></form>";
                                 <h2>主廚推薦區</h2>
                             </header>
                             <p>
-                                <?php include_once "popular.php";?>
+                                <?php include_once "recommend_chef.php";?>
                             </p>
                         </label>
                     </div>
