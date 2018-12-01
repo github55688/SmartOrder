@@ -9,7 +9,7 @@
 <!--------------------->
 <body>
 <h3><a href="index.php">返回</a></h3>
-<h1>推薦規則管理</h1>
+<h1>推薦規則管理</h1><br>
 <!-- ... 插入規則 ... -->
 <form action='recommend_edit.php' method='post'>
     <span>
@@ -22,12 +22,14 @@
         <option value='one'>個人</option>
         <option value='other'>其他</option>
     </select>
+    &emsp;
     性別 :
     <select name='gender'>
         <option></option>
         <option value='boy'>男</option>
         <option value='girl'>女</option>
     </select>
+    &emsp;
     年齡 :
     <select name='age'>
         <option></option>
@@ -36,6 +38,7 @@
         <option value='old'>老年</option>
         <option value='null'>不設定</option>
     </select>
+    &emsp;
     主餐 :
     <select name='mainmeal'>
         <option></option>
@@ -46,6 +49,7 @@ while ($row = $result->fetch_assoc()) {
 }
 ?>
     </select>
+    &emsp;
     湯頭 :
     <select name='soup'>
         <option></option>
@@ -57,6 +61,7 @@ while ($row = $result->fetch_assoc()) {
 ?>
         <option value='null'>不設定</option>
     </select>
+    &emsp;
     <input id='my1210' type='submit' name='send' value='Go'>
     </span>
 </form>
