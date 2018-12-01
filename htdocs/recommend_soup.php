@@ -30,6 +30,9 @@ switch ($apple) {
     case 4:
         run($conn, SQLL[3]);
         break;
+    case 5:
+        echo "暫無此規則";
+        break;
 
 }
 
@@ -44,4 +47,3 @@ function run($conn, $sql)
         echo "暫無此規則";
     }
 }
-

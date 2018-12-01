@@ -30,7 +30,7 @@ include_once "connect.php";
     <form action='recommend_edit.php' method='post'>
         <h3>情境 :</h3>
         <select name='situation'>
-            <option>選擇</option>
+            <option></option>
             <option value='family'>家人</option>
             <option value='friend'>朋友</option>
             <option value='boyandgirl'>情侶</option>
@@ -38,21 +38,23 @@ include_once "connect.php";
             <option value='other'>其他</option>
         </select>
         <h3>性別 :</h3>
+
         <select name='gender'>
-            <option>選擇</option>
+            <option></option>
             <option value='boy'>男</option>
             <option value='girl'>女</option>
         </select>
         <h3>年齡 :</h3>
         <select name='age'>
-            <option>選擇</option>
+            <option></option>
             <option value='young'>青年</option>
             <option value='mid'>中年</option>
             <option value='old'>老年</option>
+            <option value='null'>不設定</option>
         </select>
         <h3>主餐 :</h3>
         <select name='mainmeal'>
-            <option>選擇</option>
+            <option></option>
             <?php
 $result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='B'");
 while ($row = $result->fetch_assoc()) {
@@ -62,38 +64,46 @@ while ($row = $result->fetch_assoc()) {
         </select>
         <h3>湯頭 :</h3>
         <select name='soup'>
-            <option>選擇</option>
+            <option></option>
             <?php
 $result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='A'");
 while ($row = $result->fetch_assoc()) {
     echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
 }
 ?>
+            <option value='null'>不設定</option>
         </select>
         <input type='submit' name='send' value='新增規則'>
         <br><br><br>
     </form>
 
-<?php
+    <?php
 //如果其中任一不為空
-if (!empty($_POST['situation']) || !empty($_POST['gender']) || !empty($_POST['age']) || !empty($_POST['mainmeal']) || !empty($_POST['soup'])) {
+if (!empty($_POST['situation']) && !empty($_POST['gender']) && !empty($_POST['age']) && !empty($_POST['mainmeal']) && !empty($_POST['soup'])) {
+
     $situation = $_POST['situation'];
     $gender = $_POST['gender'];
     $age = $_POST['age'];
     $mainmeal = $_POST['mainmeal'];
     $soup = $_POST['soup'];
-    $sql = "INSERT INTO 推薦 (情境, 性別, 年齡, 主餐, 湯頭) VALUES ('$situation','$gender','$age','$mainmeal','$soup')";
-    if ($conn->query($sql) === true) {
-        echo "新紀錄插入成功";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    $sql1 = "INSERT INTO 推薦 (情境, 性別, 年齡, 主餐, 湯頭) VALUES ('$situation','$gender','$age','$mainmeal','$soup')";
+    $sql2 = "INSERT INTO 推薦 (情境, 性別, 年齡, 主餐, 湯頭) VALUES ('$situation','$gender',NULL,'$mainmeal','$soup')";
+    $sql3 = "INSERT INTO 推薦 (情境, 性別, 年齡, 主餐, 湯頭) VALUES ('$situation','$gender','$age','$mainmeal',NULL)";
+    $sql4 = "INSERT INTO 推薦 (情境, 性別, 年齡, 主餐, 湯頭) VALUES ('$situation','$gender',NULL,'$mainmeal',NULL)";
+    ($age == 'null' && $soup == 'null' ? $sql = $sql4 :
+        ($age != 'null' && $soup == 'null' ? $sql = $sql3 :
+            ($age == 'null' && $soup != 'null' ? $sql = $sql2 : $sql = $sql1)));
+    $conn->query($sql);
+}
+//點選提交 其中有空值
+else if (!empty($_POST["send"]) &&
+    (empty($_POST["situation"]) || empty($_POST["gender"]) || empty($_POST["age"]) || empty($_POST["mainmeal"]) || empty($_POST["soup"]))) {
+    echo '<script type="text/javascript">';
+    echo 'alert("請輸入完整資訊!")';
+    echo '</script>';
 }
 ?>
-
-
-
-
+<!-- ... 表格顯示 ... -->
     <table width="720" border="1">
         <tbody>
             <tr height="100">
@@ -137,6 +147,31 @@ if ($id == "") {
                 $menu_type = '其他';
                 break;
         }
+        switch ($menu_name) {
+            case 'boy':
+                $menu_name = '男';
+                break;
+            case 'girl':
+                $menu_name = '女';
+                break;
+        }
+        switch ($menu_price) {
+            case 'young':
+                $menu_price = '青年';
+                break;
+            case 'mid':
+                $menu_price = '中年';
+                break;
+            case 'old':
+                $menu_price = '老年';
+                break;
+        }
+        $result2 = mysqli_query($conn, "SELECT menu_name AS named FROM menu Where menu_id='$menu_inventory'");
+        $name1 = mysqli_fetch_row($result2);
+        $menu_inventory = $name1[0];
+        $result3 = mysqli_query($conn, "SELECT menu_name AS named FROM menu Where menu_id='$rrr'");
+        $name2 = mysqli_fetch_row($result3);
+        $rrr = $name2[0];
         echo "<tr><form>
         <td align='center'>$menu_id</td>
         <td align='center'>

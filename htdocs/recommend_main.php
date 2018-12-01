@@ -58,7 +58,9 @@ if ($num > 0) {
             }
             $_SESSION["apple"] = '4';
         } else {
+            $_SESSION["apple"] = '5';
             echo "暫無此規則";
+
         }
     }
 }

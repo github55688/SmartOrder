@@ -51,7 +51,7 @@ $num = mysqli_num_rows($result);
                             <article id="main">
                                 <?php
 //餐點選項按鈕
-echo "<form action='order-finish.php' method='post'>";
+echo "<form action='order-add.php' method='post'>";
 for ($counter = 0; $counter < $num; $counter++) {
     echo "<div>";
     echo "<input type='radio' id='side0" . ($counter + 1) . "' name='sidemeal' value='C0" . ($counter + 1) . "'>";

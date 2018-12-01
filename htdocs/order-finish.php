@@ -9,8 +9,9 @@ $gender = $_SESSION["temp"][0];
 $age = $_SESSION["temp"][1];
 $soup = $_SESSION["soup"];
 $mainmeal = $_SESSION["mainmeal"];
-$sidemeal = $_POST["sidemeal"];
-//$addmeal=$_POST["addmeal"];
+$sidemeal = $_SESSION["sidemeal"];
+$addmeal = $_POST["addmeal"];
+$amount = $_POST["amount"];
 $sql = "INSERT INTO home1 (situation, gender, age, soup, mainmeal, sidemeal)
 VALUES ('$situation','$gender','$age','$soup','$mainmeal','$sidemeal')";
 if ($conn->query($sql) === true) {
@@ -18,6 +19,7 @@ if ($conn->query($sql) === true) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+echo $addmeal[0] . $amount[0];
 ?>
 
     <head>
