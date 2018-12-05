@@ -1,6 +1,4 @@
 <!DOCTYPE HTML>
-
-<html>
 <?php
 include_once "connect.php";
 session_start();
@@ -12,6 +10,7 @@ $mainmeal = $_SESSION["mainmeal"];
 $sidemeal = $_SESSION["sidemeal"];
 $addmeal = $_POST["addmeal"];
 $amount = $_POST["amount"];
+//分析用資料庫
 $sql = "INSERT INTO home1 (situation, gender, age, soup, mainmeal, sidemeal)
 VALUES ('$situation','$gender','$age','$soup','$mainmeal','$sidemeal')";
 if ($conn->query($sql) === true) {
@@ -19,54 +18,12 @@ if ($conn->query($sql) === true) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-echo $addmeal[0] . $amount[0];
-?>
 
-    <head>
-        <title>訂單</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
+//清除
+unset($_SESSION["temp"], $_SESSION["soup"], $_SESSION["mainmeal"], $_SESSION["sidemeal"]);
 
-
-    <body>
-
-
-        <div id="page-wrapper">
-            <div id="header">
-                <div class="inner">
-                    <header>
-                        <h1>訂單</h1>
-                    </header>
-                </div>
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.php">取消點餐</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="wrapper style1">
-                <div class="container">
-                    <div>
-                        <article id="main" class="special">
-                            <table width="720" border="1">
-                                <tbody>
-                                    <tr height="100">
-                                        <th scope="col"><h3>訂單編號</h3></th>
-                                        <th scope="col"><h3>序號</h3></th>
-                                        <th scope="col"><h3>湯頭</h3></th>
-                                        <th scope="col"><h3>主餐</h3></th>
-                                        <th scope="col"><h3>副餐</h3></th>
-                                        <th scope="col"><h3>金額</h3></th>
-                                    </tr>
-                                    <?php
-unset($_SESSION["temp"], $_SESSION["soup"], $_SESSION["mainmeal"]);
-
+//編號、序號
 $var = $_SESSION["var"];
-//echo "目前序號" . $var;
 $date = date("Ym");
 $result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單 Where Left(訂單編號,6)='$date'");
 $row = mysqli_fetch_array($result);
@@ -81,7 +38,7 @@ if ($var == '1') {
 } else {
     $abc = $row["max_id"];
 }
-
+//插入訂單資料庫
 $sql2 = "INSERT INTO 訂單 (訂單編號, 序號, 湯頭, 主餐, 副餐)
                                         VALUES ('$abc','$var','$soup','$mainmeal','$sidemeal')";
 if ($conn->query($sql2) === true) {
@@ -89,10 +46,47 @@ if ($conn->query($sql2) === true) {
 } else {
     echo "Error: " . $sql2 . "<br>" . $conn->error;
 }
+//插入加點資料庫
+$abcd = 0;
+while (!empty($addmeal[$abcd])) {
+    if ($amount[$abcd] != 0) {
+        $sqladd = "INSERT INTO 加點 (訂單編號, 序號, 商品名稱,數量) VALUES ('$abc','$var','$addmeal[$abcd]','$amount[$abcd]')";
+        $conn->query($sqladd);
+    }
+    $abcd++;
+}
 //序號加一
 $var++;
 $_SESSION["var"] = $var;
+?>
+<!-- ... HTML ... -->
+<html>
+<head>
+    <title>訂單</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="assets/css/finish.css" />
+</head>
 
+<body>
+<header>
+<h1>訂單</h1>
+</header>
+<a href="index.php">取消點餐</a>
+<a href="situation2.php">繼續點餐</a>
+<a href="pdf.php">完成點餐</a>
+
+<!-- ... 表格顯示 ... -->
+<table class="bordered">
+<tr>
+<th>訂單編號</th>
+<th>序號</th>
+<th>湯頭</th>
+<th>主餐</th>
+<th>副餐</th>
+<th>金額</th>
+</tr>
+
+<?php
 $result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單");
 $row = mysqli_fetch_array($result);
 $sql0 = "SELECT * FROM 訂單 Where 訂單編號='$row[max_id]'";
@@ -114,14 +108,14 @@ for ($i = 1; $i <= $num; $i++) {
     $row_side = mysqli_fetch_array($result_side);
     $result_price = mysqli_query($conn, "SELECT menu_price AS price FROM menu Where menu_id='$row0[3]'");
     $row_price = mysqli_fetch_array($result_price);
-    echo "<tr><form>";
-    echo "<td align='center'><h2>$訂單編號</h2></td>";
-    echo "<td align='center'><h2>$序號</hh23></td>";
-    echo "<td align='center'><h2>$row_soup[soup]</h2></td>";
-    echo "<td align='center'><h2>$row_main[main]</h2></td>";
-    echo "<td align='center'><h2>$row_side[side]</h2></td>";
-    echo "<td align='center'><h2>$row_price[price]</h2></td>";
-    echo "</form></tr>";
+    echo "<tr>";
+    echo "<td>$訂單編號</td>";
+    echo "<td>$序號</td>";
+    echo "<td>$row_soup[soup]</td>";
+    echo "<td>$row_main[main]</td>";
+    echo "<td>$row_side[side]</td>";
+    echo "<td>$row_price[price]</td>";
+    echo "</tr>";
     $total = $total + $row_price["price"];
 }
 
@@ -129,17 +123,7 @@ echo "</table>";
 echo "<div style=text-align:right><h2>總金額: $total</h2>";
 
 ?>
-                                        <br>
-                                </tbody>
-                            </table>
-                            <div class="button"><a href="situation2.php">繼續點餐</a></div><br>
-                            <div class="button"><a href="pdf.php">完成點餐</a></div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+</table>
 
-
+</body>
 </html>
