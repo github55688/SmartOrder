@@ -68,13 +68,13 @@ $_SESSION["var"] = $var;
 </head>
 
 <body>
-<header>
-<h1>訂單</h1>
-</header>
-<a href="index.php">取消點餐</a>
-<a href="situation2.php">繼續點餐</a>
-<a href="pdf.php">完成點餐</a>
 
+<div class="hh1">訂單</div>
+
+<ul>
+
+<li><a href="situation2.php"><div class='two'>繼續點餐</div></a></li>
+</ul>
 <!-- ... 表格顯示 ... -->
 <table class="bordered">
 <tr>
@@ -84,6 +84,7 @@ $_SESSION["var"] = $var;
 <th>主餐</th>
 <th>副餐</th>
 <th>金額</th>
+<th>加點</th>
 </tr>
 
 <?php
@@ -108,14 +109,24 @@ for ($i = 1; $i <= $num; $i++) {
     $row_side = mysqli_fetch_array($result_side);
     $result_price = mysqli_query($conn, "SELECT menu_price AS price FROM menu Where menu_id='$row0[3]'");
     $row_price = mysqli_fetch_array($result_price);
+    $result_add = mysqli_query($conn, "SELECT 商品名稱,數量 FROM 加點 Where 訂單編號='$訂單編號'AND 序號 ='$序號'");
+
     echo "<tr>";
     echo "<td>$訂單編號</td>";
     echo "<td>$序號</td>";
     echo "<td>$row_soup[soup]</td>";
     echo "<td>$row_main[main]</td>";
     echo "<td>$row_side[side]</td>";
-    echo "<td>$row_price[price]</td>";
-    echo "</tr>";
+    echo "<td>$row_price[price]</td><td>";
+    while ($rowadd = $result_add->fetch_assoc()) {
+        if ($rowadd['數量'] != 0) {
+            $fff = $rowadd['商品名稱'];
+            $result_name = mysqli_query($conn, "SELECT menu_name AS qqq FROM menu Where menu_id='$fff'");
+            $row_add = mysqli_fetch_array($result_name);
+            echo $row_add['qqq'] . " " . $rowadd['數量'] . " ";
+        }
+    }
+    echo "</td></tr>";
     $total = $total + $row_price["price"];
 }
 
@@ -124,6 +135,10 @@ echo "<div style=text-align:right><h2>總金額: $total</h2>";
 
 ?>
 </table>
+<ul>
+<li><a href="index.php"><div class='one' id='redword'>取消點餐</div></a></li>
+<li><a href="pdf.php"><div class='three'>完成點餐</div></a></li>
 
+</ul>
 </body>
 </html>

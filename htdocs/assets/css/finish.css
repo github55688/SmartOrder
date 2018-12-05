@@ -3,11 +3,17 @@ body {
     width: 85%;
     margin: 10px auto;
     font-family: Microsoft JhengHei, Arial;
-    font-weight: bold;
+    
     font-size: 28px;
     color: rgb(238, 238, 238);
     background-image: url("background.jpg");
     background-size: cover;
+  }
+
+  .hh1{
+    width: auto;
+    height: auto;
+    font-size: 40pt;
   }
   /* 表格 */
   table {
@@ -34,12 +40,12 @@ body {
   }
   
   .bordered th {
-    background-color: #000000;
+    background-color: #ef8376;
     -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
     -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
     box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
     border-top: none;
-    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+    
   }
   
   .bordered td:first-child, .bordered th:first-child {
@@ -91,24 +97,6 @@ body {
     border-radius: 50%;
     color: white;
   }
-  /* 插入按鈕2 */
-  #my2{
-    width:40px;
-    height:40px;
-    background-color: rgba(38, 149, 253, 0.829);
-    border: 0px solid white;
-    border-radius: 50%;
-    color: white;
-  }
-  /* 刪除按鈕 */
-  #my3{
-    background-image : url("del2.png");
-      width : 18px;
-      height :20px;
-    border : none;
-    background-color: transparent; 
-    color: rgba(0, 0, 0, 0);
-  }
   
   /* 下拉選單 */
   select {
@@ -150,7 +138,8 @@ body {
   }
   
   li {
-    float: left;
+    float: right;
+    
   }
   
   li a {
@@ -159,23 +148,30 @@ body {
     color: white;
     text-align: center;
     padding: 10px 10px;
-    text-decoration: none;
-    font-size: 18px;
+    font-size: 28px;
+    text-decoration:none;
   }
-  
+
+
   li a:hover {
     background-color: rgba(226, 59, 204, 0.5);
   }
-  /* 前往首頁圖案 */
   .one:before {
-    content: url("house.png");
+    content: url("finish_no.png");
     vertical-align: middle;
     margin-right: 5px;
   }
   /* 前往匯出圖案 */
   .two:before {
-    content: url("export.png");
+    content: url("finish_add.png");
     vertical-align: middle;
     margin-right: 5px;
   }
+    /* 前往匯出圖案 */
+  .three:before {
+      content: url("finish_yes.png");
+      vertical-align: middle;
+      margin-right: 5px;
+  }
   
+    

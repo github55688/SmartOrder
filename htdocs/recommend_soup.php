@@ -41,7 +41,10 @@ function run($conn, $sql)
     $result = $conn->query($sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "推薦湯頭: " . $row["湯頭"] . "<br>";
+            $nameid = $row["湯頭"];
+            $name = mysqli_query($conn, "SELECT menu_name AS namename FROM menu Where menu_id='$nameid'");
+            $row_soup = mysqli_fetch_array($name);
+            echo "推薦湯頭: " . $row_soup["namename"] . "<br>";
         }
     } else {
         echo "暫無此規則";
