@@ -53,7 +53,7 @@ session_start();
                         </article>
                         <article class="col-4 col-12-mobile special">
                             <div>
-                                <input type="radio" id="control_03" name="situation" value="boyandgirl">
+                                <input type="radio" id="control_03" name="situation" value="couple">
                                 <label for="control_03">
 								<h2>情侶</h2>
 								<p>Couple/カップル/커플/Pareja/คนรัก</p>
@@ -62,7 +62,7 @@ session_start();
                         </article>
                         <article class="col-4 col-12-mobile special">
                             <div>
-                                <input type="radio" id="control_04" name="situation" value="one">
+                                <input type="radio" id="control_04" name="situation" value="personal">
                                 <label for="control_04">
 								<h2>個人</h2>
 								<p>individual/シングル/싱글/Soltero/เดียว</p>

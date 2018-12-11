@@ -15,7 +15,6 @@ while ($row = $result->fetch_assoc()) {
     $i++;
 }
 $num = mysqli_num_rows($result);
-
 ?>
 
 <head>
@@ -70,27 +69,25 @@ echo "<br><input type='submit' value='NEXT'></form>";
                             <header>
                                 <h2>智慧推薦區</h2>
                             </header>
-                            <p>
-                                <?php include_once "recommend_main.php";?>
-                            </p>
+                            <h5>
+                                <?php $source = "rule";include "recommend_main.php";?>
+                            </h5>
                         </label>
-
                         <label>
                             <header>
                                 <h2>熱門推薦區</h2>
                             </header>
-                            <p>
+                            <h5>
                                 <?php $thispage = "mainmeal";include_once "popular.php";?>
-                            </p>
+                            </h5>
                         </label>
-
                         <label>
                             <header>
                                 <h2>主廚推薦區</h2>
                             </header>
-                            <p>
-                                <?php include_once "recommend_chef.php";?>
-                            </p>
+                            <h5>
+                                <?php $source = "custom";include "recommend_main.php";?>
+                            </h5>
                         </label>
                     </div>
                 </div>

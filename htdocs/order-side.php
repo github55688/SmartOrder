@@ -17,40 +17,40 @@ while ($row = $result->fetch_assoc()) {
 $num = mysqli_num_rows($result);
 ?>
 
-    <head>
-        <title>附餐選擇</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
+<head>
+    <title>附餐選擇</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
 
-    <body class="no-sidebar is-preload">
-        <div id="page-wrapper">
-            <!-- Header -->
-            <div id="header">
+<body class="no-sidebar is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <div id="header">
 
-                <!-- Inner -->
-                <div class="inner">
-                    <header>
-                        <h1>附餐</h1>
-                    </header>
-                </div>
-                <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.php">取消點餐</a></li>
-                    </ul>
-                </nav>
+            <!-- Inner -->
+            <div class="inner">
+                <header>
+                    <h1>附餐</h1>
+                </header>
             </div>
-            <!-- Main -->
-            <div class="wrapper style1">
-                <div class="container">
-                    <div>
-                        <div class="col-8 col-12-mobile" id="content">
-                            <article id="main">
-                                <?php
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.php">取消點餐</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main -->
+        <div class="wrapper style1">
+            <div class="container">
+                <div>
+                    <div class="col-8 col-12-mobile" id="content">
+                        <article id="main">
+                            <?php
 //餐點選項按鈕
 echo "<form action='order-add.php' method='post'>";
 for ($counter = 0; $counter < $num; $counter++) {
@@ -63,12 +63,30 @@ for ($counter = 0; $counter < $num; $counter++) {
 }
 echo "<br><input type='submit' value='GO'></form>";
 ?>
-                            </article>
-                        </div>
+                        </article>
+                    </div>
+                    <div class="col-4 col-12-mobile" id="sidebar">
+                        <label>
+                            <header>
+                                <h2>智慧推薦區</h2>
+                            </header>
+                            <h5>
+                                <?php $source = "rule";include "recommend_side.php";?>
+                            </h5>
+                        </label>
+                        <label>
+                            <header>
+                                <h2>主廚推薦區</h2>
+                            </header>
+                            <h5>
+                                <?php $source = "custom";include "recommend_side.php";?>
+                            </h5>
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 
 </html>

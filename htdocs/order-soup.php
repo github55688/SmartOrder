@@ -70,27 +70,27 @@ echo "<br><input type='submit' value='NEXT'></form>";
                             <header>
                                 <h2>智慧推薦區</h2>
                             </header>
-                            <p>
-                                <?php include_once "recommend_soup.php";?>
-                            </p>
+                            <h5>
+                                <?php $source = "rule";include "recommend_soup.php";?>
+                            </h5>
                         </label>
 
                         <label>
                             <header>
                                 <h2>熱門推薦區</h2>
                             </header>
-                            <p>
+                            <h5>
                                 <?php $thispage = "soup";include_once "popular.php";?>
-                            </p>
+                            </h5>
                         </label>
 
                         <label>
                             <header>
                                 <h2>主廚推薦區</h2>
                             </header>
-                            <p>
-                                <?php include_once "recommend_chef.php";?>
-                            </p>
+                            <h5>
+                                <?php $source = "custom";include "recommend_soup.php";?>
+                            </h5>
                         </label>
 
                     </div>

@@ -44,7 +44,7 @@ if (!empty($_SESSION["situation"])) {
                         <article class="col-3 col-12-mobile special">
                             <form action="order-main.php" method="post">
                                 <div>
-                                    <input type="radio" id="gender_01" name="gender" value="boy">
+                                    <input type="radio" id="gender_01" name="gender" value="male">
                                     <label for="gender_01">
                                         <h2>男</h2>
                                     </label>
@@ -52,7 +52,7 @@ if (!empty($_SESSION["situation"])) {
                         </article>
                         <article class="col-3 col-12-mobile special">
                             <div>
-                                <input type="radio" id="gender_02" name="gender" value="girl">
+                                <input type="radio" id="gender_02" name="gender" value="female">
                                 <label for="gender_02">
                                         <h2>女</h2>
                                     </label>

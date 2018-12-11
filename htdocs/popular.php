@@ -6,5 +6,5 @@ while ($row = $result->fetch_assoc()) {
     $good[$i] = $row[$thispage];
     $result2 = mysqli_query($conn, "SELECT menu_name AS $thispage FROM menu Where menu_id='$good[$i]'");
     $name = mysqli_fetch_row($result2);
-    echo '&emsp;&emsp;&emsp;&ensp;第' . ++$i . '名:' . '&emsp;' . $name[0] . '<br>';
+    echo '第' . ++$i . '名:' . '&emsp;' . $name[0] . '<br>';
 }
