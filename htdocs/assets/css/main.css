@@ -2053,7 +2053,7 @@ input[type="radio"] {
   
   label {
 	display: block;
-	background: black;
+	background: white;
 	border: 1px solid #df7366;
 	border-radius: 2px;
 	padding: 1rem;

@@ -1,65 +1,8 @@
+
 <!DOCTYPE HTML>
 <?php
 include_once "connect.php";
-session_start();
-$situation = $_SESSION["situation"];
-$gender = $_SESSION["temp"][0];
-$age = $_SESSION["temp"][1];
-$soup = $_SESSION["soup"];
-$mainmeal = $_SESSION["mainmeal"];
-$sidemeal = $_SESSION["sidemeal"];
-$addmeal = $_POST["addmeal"];
-$amount = $_POST["amount"];
-//分析用資料庫
-$sql = "INSERT INTO home1 (situation, gender, age, soup, mainmeal, sidemeal)
-VALUES ('$situation','$gender','$age','$soup','$mainmeal','$sidemeal')";
-if ($conn->query($sql) === true) {
-    echo "";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-//清除
-unset($_SESSION["temp"], $_SESSION["soup"], $_SESSION["mainmeal"], $_SESSION["sidemeal"]);
-
-//編號、序號
-$var = $_SESSION["var"];
-$date = date("Ymd");
-$result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單 Where Left(訂單編號,8)='$date'");
-$row = mysqli_fetch_array($result);
-echo "";
-if ($var == '1') {
-    if (empty($row["max_id"])) {
-        $abc = $date . '001';
-    } else {
-        $abc = $row["max_id"] + 1;
-    }
-    echo "";
-} else {
-    $abc = $row["max_id"];
-}
-//插入訂單資料庫
-$sql2 = "INSERT INTO 訂單 (訂單編號, 序號, 湯頭, 主餐, 副餐)
-                                        VALUES ('$abc','$var','$soup','$mainmeal','$sidemeal')";
-if ($conn->query($sql2) === true) {
-    echo "";
-} else {
-    echo "Error: " . $sql2 . "<br>" . $conn->error;
-}
-//插入加點資料庫
-$abcd = 0;
-while (!empty($addmeal[$abcd])) {
-    if ($amount[$abcd] != 0) {
-        $sqladd = "INSERT INTO 加點 (訂單編號, 序號, 商品名稱,數量) VALUES ('$abc','$var','$addmeal[$abcd]','$amount[$abcd]')";
-        $conn->query($sqladd);
-    }
-    $abcd++;
-}
-//序號加一
-$var++;
-$_SESSION["var"] = $var;
 ?>
-<!-- ... HTML ... -->
 <html>
 <head>
     <title>訂單</title>
@@ -73,7 +16,8 @@ $_SESSION["var"] = $var;
 
 <ul>
 
-<li><a href="order-finishview.php"><div class='two'>繼續點餐</div></a></li>
+<li><a href="situation2.php"><div class='two'>繼續點餐</div></a></li>
+
 </ul>
 <!-- ... 表格顯示 ... -->
 <table class="bordered">
@@ -85,9 +29,12 @@ $_SESSION["var"] = $var;
 <th>副餐</th>
 <th>金額</th>
 <th>加點</th>
+<th>修改/刪除</th>
 </tr>
 
 <?php
+$id = !empty($_GET["id"]) ? $_GET["id"] : "";
+if ($id == "") {
 $result = mysqli_query($conn, "SELECT MAX(訂單編號) AS max_id FROM 訂單");
 $row = mysqli_fetch_array($result);
 $sql0 = "SELECT * FROM 訂單 Where 訂單編號='$row[max_id]'";
@@ -111,7 +58,7 @@ for ($i = 1; $i <= $num; $i++) {
     $row_price = mysqli_fetch_array($result_price);
     $result_add = mysqli_query($conn, "SELECT 商品名稱,數量 FROM 加點 Where 訂單編號='$訂單編號'AND 序號 ='$序號'");
 
-    echo "<tr>";
+    echo "<tr><form>";
     echo "<td>$訂單編號</td>";
     echo "<td>$序號</td>";
     echo "<td>$row_soup[soup]</td>";
@@ -126,13 +73,32 @@ for ($i = 1; $i <= $num; $i++) {
             echo $row_add['qqq'] . " " . $rowadd['數量'] . " ";
         }
     }
-    echo "</td></tr>";
+    echo "<td align='center'>
+   <!-- <input type='Submit' name='Submit' value='修改'/> -->
+         <input type='Submit'name='Submit' value='刪除'/>
+                        <input type='hidden'name='id' value='$序號'/>
+                        <input type='hidden'name='a' value='$訂單編號'/></td>";
+    echo "</td></form></tr>";
     $total = $total + $row_price["price"];
 }
 
 echo "</table>";
 echo "<div style=text-align:right><h2>總金額: $total</h2>";
-
+}else{
+    $Submit = !empty($_GET["Submit"]) ? $_GET["Submit"] : null;
+    $訂單編號= !empty($_GET["a"]) ? $_GET["a"] : null;
+    if ($Submit == '刪除') {
+        $sql = "DELETE FROM 訂單 WHERE 序號='$id' AND 訂單編號='$訂單編號'";
+        $msg = '刪除完成';
+    } else {
+        echo '錯誤';
+        return;
+    }
+    mysqli_query($conn, $sql);
+                        echo ($msg);
+                        //header("location: order-finishview.php");
+}
+mysqli_close($conn);
 ?>
 </table>
 <ul>
