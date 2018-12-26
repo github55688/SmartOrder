@@ -109,7 +109,7 @@ mysqli_close($conn);
 ?>
 </table>
 <ul>
-<li><a href="index.php"><div class='one' id='redword'>取消點餐</div></a></li>
+<li><a href="index.php"><div class='one' id='redword'>回首頁</div></a></li>
 <li><a href="pdf.php"><div class='three'>完成點餐</div></a></li>
 
 </ul>

@@ -37,7 +37,7 @@ while ($row2 = $result2->fetch_assoc()) {
             <!-- Inner -->
             <div class="inner">
                 <header>
-                    <h1>當月營業額: <?php echo $today; ?></h1>
+                    <h1>日營業額: <?php echo $today; ?></h1>
                 </header>
             </div>
             <!-- Nav -->
