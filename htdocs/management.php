@@ -50,13 +50,17 @@ while ($row2 = $result2->fetch_assoc()) {
         <!-- Main -->
         <div class="wrapper style1">
             <div class="container">
-                <div class="row gtr-200">
-                    <div class="col-8 col-12-mobile" id="content">
-                        <article id="main">
-                            <input type="button" value="菜單管理" onclick="location.href='edit.php'">
-                            <input type="button" value="規則管理" onclick="location.href='recommend_edit.php'">
-
+                <div class="row">
+                <article class="col-6 col-12-mobile special">
+                <div align="center">
+        <input type="button" value="菜單管理" onclick="location.href='edit.php'">
+        </div>
                         </article>
-                    </div>
-                </div>
-            </div>
+                        <article class="col-6 col-12-mobile special">
+                        <div align="center">
+        <input type="button" value="規則管理" onclick="location.href='recommend_edit.php'">
+        </div>
+                        </article>
+        </div>
+        </div>
+        </div>
