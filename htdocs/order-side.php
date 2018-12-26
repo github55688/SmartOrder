@@ -47,7 +47,7 @@ $num = mysqli_num_rows($result);
         <!-- Main -->
         <div class="wrapper style1">
             <div class="container">
-                <div>
+                <div class="row gtr-200">
                     <div class="col-8 col-12-mobile" id="content">
                         <article id="main">
                             <?php

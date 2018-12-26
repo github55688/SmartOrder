@@ -4,10 +4,7 @@
 <head>
         <title>訂單</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link rel="stylesheet" href="assets/css/add.css" />
     </head>
 <?php
 session_start();
@@ -24,10 +21,9 @@ $num = mysqli_num_rows($result);
 //餐點選項按鈕
 echo "<form action='order-finish.php' method='post'>";
 for ($counter = 0; $counter < $num; $counter++) {
-    echo "<div>";
-    echo "<input type='hidden' id='add0" . ($counter + 1) . "' name='addmeal[]' value='D0" . ($counter + 1) . "'>";
-    echo "<h2>" . $add[$counter] . "</h2>";
-    echo "</div>";
+    echo "<div class='border1'>";
+    echo "<input type='hidden' name='addmeal[]' value='D0" . ($counter + 1) . "'>";
+    echo "<div class='food'>" . $add[$counter] . "</div>";
     echo "
     <select name='amount[]'>
         <option value='0'>0</option>
@@ -41,8 +37,10 @@ for ($counter = 0; $counter < $num; $counter++) {
         <option value=>8</option>
         <option value=>9</option>
         <option value=>10</option>
-    </select><br>";
+    </select></div>";
 }
 echo "<br><input type='submit' value='GO'></form>";
+
+//echo "<input type='hidden' id='add0" . ($counter + 1) . "' name='addmeal[]' value='D0" . ($counter + 1) . "'>";
 ?>
 </html>

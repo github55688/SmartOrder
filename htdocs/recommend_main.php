@@ -59,7 +59,7 @@ if ($num > 0) {
         echo "1.情境: " . $row["情境"] . "<br>";
         echo "2.性別: " . $row["性別"] . "<br>";
         echo "3.年齡: " . $row["年齡"] . "<br>";
-        echo "推薦: " . $name[0] . "<br>";
+        echo "推薦: " . $name[0] . "<br><br>";
         $i++;
     }
 } else {

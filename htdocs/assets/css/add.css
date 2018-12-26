@@ -1,0 +1,51 @@
+body {
+    width: 80%;
+    margin: 10px auto;
+    font-family: Microsoft JhengHei, Arial;   
+    font-size: 48px;
+    color: black;
+    background-color: #FFFAF0
+  }
+
+  .border1{
+    border-bottom: 6px solid #ef8376;
+    background-color: lightgrey;
+    width: 24%;
+    display: inline-block;
+    text-align: center;
+    border-right-style: dotted;
+    border-right-color: red;
+    border-radius: 8px;
+  }
+
+  select{
+    display: inline-block;
+    height: 25px;
+    width: 60px;
+    margin-bottom: 5px;
+  }
+
+  .food{
+      height: 50px;
+      margin-bottom: 0px;
+  }
+
+  input[type="submit"]{
+    position: relative;
+    display: inline-block;
+    background: #df7366;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5em;
+    text-decoration: none;
+    padding: 0.65em 3em 0.65em 3em;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    font-weight: 300;
+    -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+  
+}
