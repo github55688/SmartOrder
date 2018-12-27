@@ -97,7 +97,6 @@
                         <th scope="col">產品類型</th>
                         <th scope="col">產品名稱</th>
                         <th scope="col">產品價格</th>
-                        <th scope="col">預設庫存</th>
                         <th scope="col">修改/刪除</th>
                     </tr>
                     <?php
@@ -113,13 +112,11 @@
                             $menu_type = $row[1];
                             $menu_name = $row[2];
                             $menu_price = $row[3];
-                            $menu_inventory = $row[4];
                             echo "<tr><form>";
                             echo "<td align='center'>$menu_id</td>";
                             echo "<td align='center'>$menu_type</td>";
                             echo "<td align='center'><input type=text name='menu_name' value='$menu_name'></td>";
                             echo "<td align='center'><input type=text name='menu_price' value='$menu_price'></td>";
-                            echo "<td align='center'><input type=text name='menu_inventory' value='$menu_inventory'></td>";
                             echo "<td align='center'><input type='Submit' name='Submit' value='修改'/>
                         <input type='Submit'name='Submit' value='刪除'/>
                         <input type='hidden'name='id' value='$menu_id'/></td>";
@@ -130,10 +127,10 @@
                         //取得參數
                         $n = !empty($_GET["menu_name"]) ? $_GET["menu_name"] : null;
                         $p = !empty($_GET["menu_price"]) ? $_GET["menu_price"] : null;
-                        $in = !empty($_GET["menu_inventory"]) ? $_GET["menu_inventory"] : null;
+             
                         $Submit = !empty($_GET["Submit"]) ? $_GET["Submit"] : null;
                         if ($Submit == '修改') {
-                            $sql = "UPDATE menu SET menu_name='$n',menu_price='$p',menu_inventory='$in' WHERE menu_id='$id'";
+                            $sql = "UPDATE menu SET menu_name='$n',menu_price='$p' WHERE menu_id='$id'";
                             $msg = '修改完成';
                         } else if ($Submit == '刪除') {
                             $sql = "DELETE FROM menu WHERE menu_id='$id'";
