@@ -13,7 +13,7 @@ ob_start(); //打開緩衝區
 <!--------------------->
 <body>
 <ul>
-  <li><a href="index.php"><div class='one'>首頁</div></a></li>
+  <li><a href="management.php"><div class='one'>返回</div></a></li>
   <li><a href="do.php"><div class='two'> 匯出</div></a></li>
 </ul>
 

@@ -22,7 +22,7 @@
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href="index.php">返回</a></li>
+                    <li><a href="management.php">返回</a></li>
                 </ul>
             </nav>
         </div>

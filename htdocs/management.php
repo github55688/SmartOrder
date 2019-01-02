@@ -1,6 +1,13 @@
 <!DOCTYPE HTML>
 
 <?php
+session_start();   //開啟session
+if(!isset($_SESSION['username'])){
+ echo "Please Login first";
+ header("refresh:2;url=login.php");  //轉址
+ exit(); //不執行之後的程式碼
+}
+
 include_once "connect.php";
 $today = 0;
 $date = date("Ymd");
@@ -19,48 +26,54 @@ while ($row2 = $result2->fetch_assoc()) {
     $today = $today + $price['price'] * $row2['數量'];
 }
 
-?>
-<html>
-<head>
-    <title>主餐選擇</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-</head>
+    
 
-<body class="right-sidebar is-preload">
-    <div id="page-wrapper">
-        <!-- Header -->
-        <div id="header">
-            <!-- Inner -->
-            <div class="inner">
-                <header>
-                    <h1>日營業額: <?php echo $today; ?></h1>
-                </header>
+?>
+    
+    <head>
+        <title>主餐選擇</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+
+    <body class="right-sidebar is-preload">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <div id="header">
+                <!-- Inner -->
+                <div class="inner">
+                    <header>
+                        <h1>日營業額:
+                            <?php echo $today; ?>
+                        </h1>
+                    </header>
+                </div>
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="logout.php">登出</a></li>
+                    </ul>
+                </nav>
             </div>
-            <!-- Nav -->
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.php">回首頁</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- Main -->
-        <div class="wrapper style1">
-            <div class="container">
-                <div class="row">
-                <article class="col-6 col-12-mobile special">
-                <div align="center">
-        <input type="button" value="菜單管理" onclick="location.href='edit.php'">
-        </div>
+            <!-- Main -->
+            <div class="wrapper style1">
+                <div class="container">
+                    <div class="row">
+                        <article class="col-6 col-12-mobile special">
+                            <div align="center">
+                                <input type="button" value="菜單管理" onclick="location.href='edit.php'">
+                            </div>
                         </article>
                         <article class="col-6 col-12-mobile special">
-                        <div align="center">
-        <input type="button" value="規則管理" onclick="location.href='recommend_edit.php'">
-        </div>
+                            <div align="center">
+                                <input type="button" value="規則管理" onclick="location.href='recommend_edit.php'">
+                            </div>
                         </article>
-        </div>
-        </div>
-        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+</body>
