@@ -76,8 +76,14 @@ table {
 }
 /* 插入列1置中 */
 .middle1{
-  width: 850px;
+  width: 800px;
   height: 70px;
+  margin: 0 auto; 
+}
+
+.middle2{
+  width: 750px;
+  height: 50px;
   margin: 0 auto; 
 }
 
@@ -172,7 +178,7 @@ li a:hover {
   margin-right: 5px;
 }
 /* 前往匯出圖案 */
-.two:before {
+#two:before {
   content: url("export.png");
   vertical-align: middle;
   margin-right: 5px;

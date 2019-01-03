@@ -57,7 +57,7 @@ if ($id == "") {
         $row_side = mysqli_fetch_array($result_side);
         $result_price = mysqli_query($conn, "SELECT menu_price AS price FROM menu Where menu_id='$row0[3]'");
         $row_price = mysqli_fetch_array($result_price);
-        $result_add = mysqli_query($conn, "SELECT 商品名稱,數量 FROM 加點 Where 訂單編號='$訂單編號'AND 序號 ='$序號'");
+        $result_add = mysqli_query($conn, "SELECT 商品名稱, 數量 FROM 加點 Where 訂單編號='$訂單編號'AND 序號 ='$序號'");
 
         echo "<tr><form>";
         echo "<td>$訂單編號</td>";

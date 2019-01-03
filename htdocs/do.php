@@ -4,13 +4,20 @@ $username = "root";
 $password = "";
 $dbname = "good";
 $conn = new mysqli($servername, $username, $password, $dbname);
-$result = mysqli_query($conn, "SELECT * FROM home1 ORDER BY id ASC");
-$str = "situation,gender,age,soup,mainmeal,sidemeal\n";
+$date = date("Ym");
+$Year = $_POST["YYYY"];
+$Month = $_POST["MM"];
+if ($Month < 10) {
+    $Month = '0' . $Month;
+}
+$data = $Year . $Month;
+$result = mysqli_query($conn, "SELECT * FROM home1 WHERE id=$data ORDER BY id ASC");
+$str = "id,situation,gender,age,soup,mainmeal,sidemeal\n";
 $str = iconv('UTF-8', 'BIG5', $str);
 while ($row = mysqli_fetch_array($result)) {
-    $str .= $row['situation'] . ',' . $row['gender'] . ',' . $row['age'] . ',' . $row['soup'] . ',' . $row['mainmeal'] . ',' . $row['sidemeal'] . "\n"; //用引文逗號分開
+    $str .= $row['id'] . ',' . $row['situation'] . ',' . $row['gender'] . ',' . $row['age'] . ',' . $row['soup'] . ',' . $row['mainmeal'] . ',' . $row['sidemeal'] . "\n"; //用引文逗號分開
 }
-$filename = date('Ymd') . '.csv'; //設定檔名
+$filename = $data . '.csv'; //設定檔名
 export_csv($filename, $str); //匯出
 mysqli_close($conn);
 

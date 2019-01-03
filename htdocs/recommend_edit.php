@@ -5,20 +5,49 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="assets/css/mainn.css" />
     <link rel="icon" href="assets/css/tools.png" type="image/ico" />
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.js"></script>
 </head>
 <?php
 include_once "connect.php";
 ob_start(); //打開緩衝區
+
 ?>
-<!--------------------->
+
 <body>
 <ul>
   <li><a href="management.php"><div class='one'>返回</div></a></li>
-  <li><a href="do.php"><div class='two'> 匯出</div></a></li>
 </ul>
 
-<h1>推薦規則管理</h1>
+<!-- ... 匯出功能 ... -->
+<script type="text/javascript">
+   var date = new Date();
+   YYYY = date.getFullYear();
+   MM = date.getMonth();
+document.write("<div class='middle2'>");
+document.write("<form action='do.php' method='post'>");
+document.write("資料匯出:&emsp;<select name='YYYY'>");
+for(Y=2015; Y<=2030; Y++){
+       if(Y != YYYY)
+          document.write("<option value='" , Y , "'>" , Y , "</option>");
+       else
+          document.write("<option value='" , Y , "' selected>" , Y , "</option>");
+    }
+document.write("</select>年&emsp;");
+
+document.write("<select name='MM'>");
+for (M=1; M<=12; M++) {
+    if (M != MM + 1)
+       document.write("<option value='" , M ,"'>" , M , "</option>");
+    else
+       document.write("<option value='" , M ,"' selected>" , M , "</option>");
+          }
+document.write("</select>月&emsp;");
+document.write("<input id='my2' type='submit' value='匯出'></form></div>");
+</script>
+
 <!-- ... 插入規則 ... -->
+<h1>推薦規則管理</h1>
 <div class='middle1'>
 <form action='recommend_edit.php' method='post'>
     <span>
@@ -106,7 +135,12 @@ if (!empty($_POST['source']) && !empty($_POST['mainmeal']) && !empty($_POST['sou
 ?>
 
 <!-- ... 表格顯示 ... --><br>
-<table class="bordered">
+<script type="text/javascript">
+$(function () {
+    $("#myTable").tablesorter();
+});
+</script>
+<table id="myTable" class="bordered">
 <thead>
     <tr>
     <th>來源</th>
