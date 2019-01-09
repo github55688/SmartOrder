@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <title>規則管理</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="assets/css/mainn.css" />
     <link rel="icon" href="assets/css/tools.png" type="image/ico" />
-    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 </head>
 <?php
 include_once "connect.php";
@@ -15,103 +16,105 @@ ob_start(); //打開緩衝區
 ?>
 
 <body>
-<ul>
-  <li><a href="management.php"><div class='one'>返回</div></a></li>
-</ul>
+    <ul>
+        <li><a href="management.php">
+                <div class='one'>返回</div>
+            </a></li>
+    </ul>
 
-<!-- ... 匯出功能 ... -->
-<script type="text/javascript">
-   var date = new Date();
-   YYYY = date.getFullYear();
-   MM = date.getMonth();
-document.write("<div class='middle2'>");
-document.write("<form action='do.php' method='post'>");
-document.write("資料匯出:&emsp;<select name='YYYY'>");
-for(Y=2015; Y<=2030; Y++){
-       if(Y != YYYY)
-          document.write("<option value='" , Y , "'>" , Y , "</option>");
-       else
-          document.write("<option value='" , Y , "' selected>" , Y , "</option>");
-    }
-document.write("</select>年&emsp;");
+    <!-- ... 匯出功能 ... -->
+    <script type="text/javascript">
+        var date = new Date();
+        YYYY = date.getFullYear();
+        MM = date.getMonth();
+        document.write("<div class='middle2'>");
+        document.write("<form action='do.php' method='post'>");
+        document.write("資料匯出:&emsp;<select name='YYYY'>");
+        for (Y = 2015; Y <= 2030; Y++) {
+            if (Y != YYYY)
+                document.write("<option value='", Y, "'>", Y, "</option>");
+            else
+                document.write("<option value='", Y, "' selected>", Y, "</option>");
+        }
+        document.write("</select>年&emsp;");
 
-document.write("<select name='MM'>");
-for (M=1; M<=12; M++) {
-    if (M != MM + 1)
-       document.write("<option value='" , M ,"'>" , M , "</option>");
-    else
-       document.write("<option value='" , M ,"' selected>" , M , "</option>");
-          }
-document.write("</select>月&emsp;");
-document.write("<input id='my2' type='submit' value='匯出'></form></div>");
-</script>
+        document.write("<select name='MM'>");
+        for (M = 1; M <= 12; M++) {
+            if (M != MM + 1)
+                document.write("<option value='", M, "'>", M, "</option>");
+            else
+                document.write("<option value='", M, "' selected>", M, "</option>");
+        }
+        document.write("</select>月&emsp;");
+        document.write("<input id='my2' type='submit' value='匯出'></form></div>");
+    </script>
 
-<!-- ... 插入規則 ... -->
-<h1>推薦規則管理</h1>
-<div class='middle1'>
-<form action='recommend_edit.php' method='post'>
-    <span>
-    <input type="radio" name="source" value="rule">規則
-    <input type="radio" name="source" value="custom">自訂<br>
-    情境 :
-    <select name='situation'>
-        <option value='all'>不拘</option>
-        <option value='family'>家人</option>
-        <option value='friend'>朋友</option>
-        <option value='couple'>情侶</option>
-        <option value='personal'>個人</option>
-        <option value='other'>其他</option>
-    </select>
-    性別 :
-    <select name='gender'>
-        <option value='all'>不拘</option>
-        <option value='male'>男</option>
-        <option value='female'>女</option>
-    </select>
-    年齡 :
-    <select name='age'>
-        <option value='all'>不拘</option>
-        <option value='young'>青年</option>
-        <option value='mid'>中年</option>
-        <option value='old'>老年</option>
-    </select>
-    主餐 :
-    <select name='mainmeal'>
-        <option></option>
-<?php
+    <!-- ... 插入規則 ... -->
+    <h1>推薦規則管理</h1>
+    <div class='middle1'>
+        <form action='recommend_edit.php' method='post'>
+            <span>
+                <input type="radio" name="source" value="rule">規則
+                <input type="radio" name="source" value="custom">自訂<br>
+                情境 :
+                <select name='situation'>
+                    <option value='all'>不拘</option>
+                    <option value='family'>家人</option>
+                    <option value='friend'>朋友</option>
+                    <option value='couple'>情侶</option>
+                    <option value='personal'>個人</option>
+                    <option value='other'>其他</option>
+                </select>
+                性別 :
+                <select name='gender'>
+                    <option value='all'>不拘</option>
+                    <option value='male'>男</option>
+                    <option value='female'>女</option>
+                </select>
+                年齡 :
+                <select name='age'>
+                    <option value='all'>不拘</option>
+                    <option value='young'>青年</option>
+                    <option value='mid'>中年</option>
+                    <option value='old'>老年</option>
+                </select>
+                主餐 :
+                <select name='mainmeal'>
+                    <option></option>
+                    <?php
 $result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='B'");
 while ($row = $result->fetch_assoc()) {
     echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
 }
 ?>
-    </select>
-    湯頭 :
-    <select name='soup'>
-        <option></option>
-<?php
+                </select>
+                湯頭 :
+                <select name='soup'>
+                    <option></option>
+                    <?php
 $result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='A'");
 while ($row = $result->fetch_assoc()) {
     echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
 }
 ?>
-    </select>
-    </select>
-    副餐 :
-    <select name='side'>
-        <option value='all'>不拘</option>
-<?php
+                </select>
+                </select>
+                副餐 :
+                <select name='side'>
+                    <option value='all'>不拘</option>
+                    <?php
 $result = $conn->query("SELECT menu_id,menu_name FROM menu WHERE menu_type='C'");
 while ($row = $result->fetch_assoc()) {
     echo "<option value='" . $row['menu_id'] . "'>" . $row['menu_name'] . "</option>";
 }
 ?>
-    </select>
-    &emsp;<input id='my1' type='submit' name='send' value='+'>
-    </span>
-</form>
-</div>
-<!-- ... 點選插入 ... -->
-<?php
+                </select>
+                &emsp;<input id='my1' type='submit' name='send' value='+'>
+            </span>
+        </form>
+    </div>
+    <!-- ... 點選插入 ... -->
+    <?php
 if (!empty($_POST['source']) && !empty($_POST['mainmeal']) && !empty($_POST['soup'])) {
     $source = $_POST['source'];
     $situation = $_POST['situation'];
@@ -124,36 +127,36 @@ if (!empty($_POST['source']) && !empty($_POST['mainmeal']) && !empty($_POST['sou
     $conn->query($sql);
 } else if (!empty($_POST["send"]) && empty($_POST["source"])) {
     echo '<script type="text/javascript">',
-    'alert("請選擇來源!")',
-        '</script>';
+        'alert("請選擇來源!")',
+            '</script>';
 
 } else if (!empty($_POST["send"]) && (empty($_POST["mainmeal"]) || empty($_POST["soup"]))) {
     echo '<script type="text/javascript">',
-    'alert("少了主餐或湯頭!")',
-        '</script>';
+        'alert("少了主餐或湯頭!")',
+            '</script>';
 }
 ?>
 
-<!-- ... 表格顯示 ... --><br>
-<script type="text/javascript">
-$(function () {
-    $("#myTable").tablesorter();
-});
-</script>
-<table id="myTable" class="bordered">
-<thead>
-    <tr>
-    <th>來源</th>
-    <th>情境</th>
-    <th>性別</th>
-    <th>年齡</th>
-    <th>主餐</th>
-    <th>湯頭</th>
-    <th>副餐</th>
-    <th>刪除</th>
-    </tr>
-</thead>
-<?php
+    <!-- ... 表格顯示 ... --><br>
+    <script type="text/javascript">
+        $(function () {
+            $("#myTable").tablesorter();
+        });
+    </script>
+    <table id="myTable" class="bordered">
+        <thead>
+            <tr>
+                <th>來源</th>
+                <th>情境</th>
+                <th>性別</th>
+                <th>年齡</th>
+                <th>主餐</th>
+                <th>湯頭</th>
+                <th>副餐</th>
+                <th>刪除</th>
+            </tr>
+        </thead>
+        <?php
 $id = !empty($_GET["id"]) ? $_GET["id"] : "";
 if ($id == "") {
     $sql_rule = "SELECT * FROM 推薦";
@@ -259,7 +262,8 @@ if ($id == "") {
 }
 ob_end_flush(); //輸出全部內容到瀏覽器
 ?>
-</table>
+    </table>
 
 </body>
+
 </html>

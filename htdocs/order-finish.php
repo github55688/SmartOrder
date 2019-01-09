@@ -31,7 +31,7 @@ if ($var == '1') {
     $abc = $row["max_id"];
 }
 //分析用資料庫
-$sql = "INSERT INTO home1 (id, situation, gender, age, soup, mainmeal, sidemeal)
+$sql = "INSERT INTO home1 (month1, situation, gender, age, soup, mainmeal, sidemeal)
 VALUES ('$date2','$situation','$gender','$age','$soup','$mainmeal','$sidemeal')";
 if ($conn->query($sql) === true) {
     echo "";

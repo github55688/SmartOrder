@@ -32,16 +32,16 @@ for ($i = 0; $i < $num; $i++) {
         $total = $total + $row_addprice['price'] * $add['數量'];
         $smalltotal = $smalltotal + $row_addprice['price'] * $add['數量'];
         $row_add = mysqli_fetch_array($chname);
-        $html2[$i][$j] = $row_add['qqq'] . "&emsp;" . $row_addprice['price'] . " *" . $add['數量'];
-        $html3[$i][$j] = "$".$row_addprice['price'] * $add['數量'];
+        $html2[$i][$j] = $row_add['qqq'] . "&emsp;&emsp;&emsp;&emsp;" . $row_addprice['price'] . " *" . $add['數量'];
+        $html3[$i][$j] = "&emsp;&emsp;&emsp;&emsp;$".$row_addprice['price'] * $add['數量'];
         $j++;
     }
     //單人小計
     $smalltotal = $smalltotal + $row_price["price"];
     //訂單總和
     $total = $total + $row_price["price"];
-    $html[$i] = '序號' . $序號 . '<br><br>' .
-        $row_soup['soup'] . '+' . $row_main['main'] . '+' . $row_side['side'] .
-        '&emsp;$' . $row_price['price'];
-    $html4[$i] = '小計:&emsp;$' . $smalltotal;
+    $html[$i] = '序號' . $序號 . '<br>' .
+        $row_soup['soup'] . '<br>&emsp;' . $row_main['main'] .
+        '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$' . $row_price['price'] . '<br>&emsp;&emsp;' . $row_side['side'];
+    $html4[$i] = $smalltotal;
 }
