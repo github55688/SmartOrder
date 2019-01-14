@@ -30,16 +30,13 @@ while ($row = $result->fetch_assoc()) {
 }
 
 //popular
-$result = mysqli_query($conn,
- "SELECT COUNT(*) AS cc, 主餐 FROM 訂單 WHERE Left(訂單編號,8)='$date' GROUP BY 主餐  ORDER BY cc DESC LIMIT 3");
+$result = mysqli_query($conn, "SELECT COUNT(*) AS cc, 主餐 FROM 訂單 WHERE Left(訂單編號,8)='$date' GROUP BY 主餐  ORDER BY cc DESC LIMIT 3");
 $i = 0;
 while ($row = $result->fetch_assoc()) {
     $popular_today[$i] = $row['主餐'];
     $result2 = mysqli_query($conn, "SELECT menu_name AS mainmeal FROM menu Where menu_id='$popular_today[$i]'");
     $name = mysqli_fetch_row($result2);
     $popular_today[$i] = $name[0];
-    
-    echo $popular_today[$i];$i++;
 }
 ?>
 
@@ -65,7 +62,7 @@ while ($row = $result->fetch_assoc()) {
 for ($i = 0; $i < 3; $i++) {
     if (!empty($popular_today[$i])) {
         $j = $i + 1;
-        echo $j . "-" . $popular_today[$i]."<br>";
+        echo $j . "-" . $popular_today[$i];
     }
 }
 ?>
