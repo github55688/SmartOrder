@@ -11,7 +11,7 @@ if ($Month < 10) {
     $Month = '0' . $Month;
 }
 $data = $Year . $Month;
-$result = mysqli_query($conn, "SELECT * FROM home1 WHERE id=$data ORDER BY id ASC");
+$result = mysqli_query($conn, "SELECT * FROM home1 WHERE month1=$data ORDER BY id ASC");
 $str = "id,situation,gender,age,soup,mainmeal,sidemeal\n";
 $str = iconv('UTF-8', 'BIG5', $str);
 while ($row = mysqli_fetch_array($result)) {

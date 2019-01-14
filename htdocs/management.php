@@ -34,8 +34,8 @@ $result = mysqli_query($conn, "SELECT COUNT(*) AS cc, 主餐 FROM 訂單 WHERE L
 $i = 0;
 while ($row = $result->fetch_assoc()) {
     $popular_today[$i] = $row['主餐'];
-    $result = mysqli_query($conn, "SELECT menu_name AS mainmeal FROM menu Where menu_id='$popular_today[$i]'");
-    $name = mysqli_fetch_row($result);
+    $result2 = mysqli_query($conn, "SELECT menu_name AS mainmeal FROM menu Where menu_id='$popular_today[$i]'");
+    $name = mysqli_fetch_row($result2);
     $popular_today[$i] = $name[0];
 }
 ?>
@@ -80,17 +80,17 @@ for ($i = 0; $i < 3; $i++) {
             <div class="wrapper style1">
                 <div class="container">
                     <div class="row">
-                        <article class="col-6 col-12-mobile special">
+                        <article class="col-4 col-12-mobile special">
                             <div align="center">
                                 <input type="button" value="菜單管理" onclick="location.href='edit.php'">
                             </div>
                         </article>
-                        <article class="col-6 col-12-mobile special">
+                        <article class="col-4 col-12-mobile special">
                             <div align="center">
                                 <input type="button" value="規則管理" onclick="location.href='recommend_edit.php'">
                             </div>
                         </article>
-                        <article class="col-6 col-12-mobile special">
+                        <article class="col-4 col-12-mobile special">
                             <div align="center">
                                 <input type="button" value="財務統計" onclick="location.href='sales.php'">
                             </div>

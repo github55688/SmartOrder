@@ -6,49 +6,38 @@
 #word{
     margin: auto;
     width: 600px;
-    font-size: 18pt;
+    font-size: 20pt;
     text-align:center;
+    font-weight: bold;
 }
 /* 直條圖1 */
 #flot-placeholder {
-    width: 800px;
-    height: 320px;
+    width: 700px;
+    height: 300px;
     margin: auto;
 }
 /* 月表格*/
-#table1{
+#table{
+    width: 650px;
     margin: auto;
+    border:black 1px double;
 }
-/* 直條圖2 */
-#flot-placeholder2 {
-    width: 600px;
-    height: 320px;
-    margin: auto;
-}
-/* 週表格*/
-#table2{
-    margin: auto;
-}
-/* 現在週 */
-#now_week_display{
-    margin: auto;
-    width: 600px;
-    font-size: 14pt;
-    
-    text-align:center;
-}
-#buttons{
-    margin: auto;
-    width: 600px;
-    text-align:center;
+#table th{ border: black 1px solid; text-align:center; }
+#table td{ border: brown 1px solid; text-align:center; }
+
+
+.enter{
+    background-color: #0099CC; 
+    color:white
 }
 
 body {
     width: 850px;
     margin: 40px auto;
     background-color: white;
-    font-family: Microsoft JhengHei, Arial;
-    font-weight: bold;
+    font-family: Microsoft JhengHei, sans-serif;
+    /*font-weight: bold;*/
+    font-size: 14pt;
     background: #58a; 
     background-image: repeating-linear-gradient(30deg, hsla(0,0%,100%,.1), hsla(0,0%,100%,.1) 5px, transparent 0, transparent 40px);
   }

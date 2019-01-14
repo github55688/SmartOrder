@@ -30,7 +30,7 @@ ob_start(); //打開緩衝區
         document.write("<div class='middle2'>");
         document.write("<form action='do.php' method='post'>");
         document.write("資料匯出:&emsp;<select name='YYYY'>");
-        for (Y = 2015; Y <= 2030; Y++) {
+        for (Y = YYYY-4; Y <= YYYY; Y++) {
             if (Y != YYYY)
                 document.write("<option value='", Y, "'>", Y, "</option>");
             else
