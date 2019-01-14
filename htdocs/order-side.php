@@ -18,7 +18,7 @@ $num = mysqli_num_rows($result);
 ?>
 
 <head>
-    <title>附餐選擇</title>
+    <title>副餐選擇</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -34,7 +34,7 @@ $num = mysqli_num_rows($result);
             <!-- Inner -->
             <div class="inner">
                 <header>
-                    <h1>附餐</h1>
+                    <h1>副餐</h1>
                 </header>
             </div>
             <!-- Nav -->

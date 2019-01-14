@@ -37,10 +37,9 @@ unset($_SESSION["situation"]);
                 </div>
                 <!-- Nav -->
                 <nav id="nav">
-                    <ul>
-                        <li><a href="index.php">開始點餐</a></li>
+                    
                         <li><a href="login.php">管理人員選項</a></li>
-                    </ul>
+                    
                 </nav>
             </div>
         </div>
