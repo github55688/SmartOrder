@@ -10,9 +10,14 @@ include_once "connect.php";?>
         <link rel="stylesheet" href="assets/css/login.css" />
     </head>
 <body>
+<nav id="nav">
+                  
+					<li><a href="index.php">返回</a></li>
+				  
+			</nav>
 <form name="form" method="post" action="login2.php">
 <div class="body"></div>
-		<div class="grad"></div>
+		
 		<div class="header">
 			<div>管理員<span>登入</span></div>
 		</div>
