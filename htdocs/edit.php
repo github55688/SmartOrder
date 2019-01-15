@@ -26,21 +26,23 @@
                 </ul>
             </nav>
         </div>
+        <div class="wrapper style1">
         <form action='edit.php' method='post'>
-            <h3>產品名稱 :</h3><input type='text' name='myname'>
-            <h3>產品價格 :</h3><input type='text' name='myprice'>
-            <h3>產品類別 :</h3>
+        <div class="row">
+        <article class="col-3 col-12-mobile special">產品名稱 :<input type='text' name='myname' ></article>
+        <article class="col-3 col-12-mobile special">產品價格 :<input type='text' name='myprice'></article>
+        <article class="col-3 col-12-mobile special">產品類別 :
             <select name='mytypes'>
             <option>選擇類別</option>
             <option value='A'>A</option>
             <option value='B'>B</option>
             <option value='C'>C</option>
             <option value='D'>D</option>
-            </select>
-            <input type='submit' name='send' value='新增'>
-            <br><br><br>
+            </select></article>
+            <article class="col-3 col-12-mobile special"><input type='submit' name='send' value='新增'></article>
+            </div>
         </form>
-
+<br>
         <?php
         //表單全部不為空
         if (!empty($_POST["myname"]) && !empty($_POST["myprice"]) && !empty($_POST["mytypes"])) {
@@ -86,19 +88,15 @@
             echo '</script>';
         }
         ?>
-
-
-
-
-            <table width="720" border="1">
+                <table width="720" border="1">
                 <tbody>
-                    <tr height="100">
+                    
                         <th scope="col">產品ID</th>
                         <th scope="col">產品類型</th>
                         <th scope="col">產品名稱</th>
                         <th scope="col">產品價格</th>
                         <th scope="col">修改/刪除</th>
-                    </tr>
+                    
                     <?php
                     $id = !empty($_GET["id"]) ? $_GET["id"] : "";
                     if ($id == "") {
@@ -150,6 +148,7 @@
 
                 </tbody>
             </table>
+                </div>
 </body>
 
 </html>

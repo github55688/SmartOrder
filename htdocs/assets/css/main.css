@@ -1953,10 +1953,9 @@ input, select, textarea {
 	form select,
 	form textarea {
 		-webkit-appearance: none;
-		display: block;
 		border: 0;
 		background: #fafafa;
-		width: 10%;
+		width: 65%;
 		border-radius: 0.5em;
 		border: solid 1px #E5E5E5;
 		padding: 1em;
