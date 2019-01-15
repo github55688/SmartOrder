@@ -38,7 +38,6 @@ session_start();
                                     <input type="radio" id="control_01" name="situation" value="family">
                                     <label for="control_01">
 								<h2>家人</h2>
-								<p>Family/家族/가족/Familia/ครอบครัว</p>
 							</label>
                                 </div>
                         </article>
@@ -47,7 +46,6 @@ session_start();
                                 <input type="radio" id="control_02" name="situation" value="friend">
                                 <label for="control_02">
 								<h2>朋友</h2>
-								<p>Friend/フレンド/친구/Amigo/เพื่อน</p>
 							</label>
                             </div>
                         </article>
@@ -56,7 +54,6 @@ session_start();
                                 <input type="radio" id="control_03" name="situation" value="couple">
                                 <label for="control_03">
 								<h2>情侶</h2>
-								<p>Couple/カップル/커플/Pareja/คนรัก</p>
 							</label>
                             </div>
                         </article>
@@ -65,7 +62,6 @@ session_start();
                                 <input type="radio" id="control_04" name="situation" value="personal">
                                 <label for="control_04">
 								<h2>個人</h2>
-								<p>individual/シングル/싱글/Soltero/เดียว</p>
 							</label>
                             </div>
                         </article>
@@ -74,7 +70,6 @@ session_start();
                                 <input type="radio" id="control_05" name="situation" value="other">
                                 <label for="control_05">
 								<h2>其他</h2>
-								<p>other/その他/기타/Otros/อื่น ๆ</p>
 							</label>
                             </div>
                         </article>
