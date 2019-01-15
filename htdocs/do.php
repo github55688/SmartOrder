@@ -11,11 +11,11 @@ if ($Month < 10) {
     $Month = '0' . $Month;
 }
 $data = $Year . $Month;
-$result = mysqli_query($conn, "SELECT * FROM home1 WHERE month1=$data ORDER BY id ASC");
-$str = "id,situation,gender,age,soup,mainmeal,sidemeal\n";
+$result = mysqli_query($conn, "SELECT * FROM home1 WHERE month1=$data");
+$str = "month1,situation,gender,age,soup,mainmeal,sidemeal\n";
 $str = iconv('UTF-8', 'BIG5', $str);
 while ($row = mysqli_fetch_array($result)) {
-    $str .= $row['id'] . ',' . $row['situation'] . ',' . $row['gender'] . ',' . $row['age'] . ',' . $row['soup'] . ',' . $row['mainmeal'] . ',' . $row['sidemeal'] . "\n"; //用引文逗號分開
+    $str .= $row['month1'] . ',' . $row['situation'] . ',' . $row['gender'] . ',' . $row['age'] . ',' . $row['soup'] . ',' . $row['mainmeal'] . ',' . $row['sidemeal'] . "\n"; //用引文逗號分開
 }
 $filename = $data . '.csv'; //設定檔名
 export_csv($filename, $str); //匯出
